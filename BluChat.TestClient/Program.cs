@@ -1,3 +1,6 @@
+using System.Configuration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace BluChat.TestClient
 {
     internal static class Program
@@ -11,8 +14,25 @@ namespace BluChat.TestClient
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Task.Run(new Action((() => Application.Run(new Main()))));
-            Application.Run(new Main());
+
+            NumberOfWindows count = new NumberOfWindows();
+            count.ShowDialog();
+
+            int numberOfWindows = count.NumberOfWindowsResult;
+
+            for (int i = 0; i < numberOfWindows; i++)
+            {
+                var window = new Main();
+                window.Text = window.Text + " - " + i;
+
+                Task.Run(new Action((() =>
+                        {
+                            Application.Run(window);
+                })));
+            }
+
+            Application.Run();
+
         }
     }
 }
