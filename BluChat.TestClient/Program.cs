@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BluChat.TestClient
@@ -15,6 +16,8 @@ namespace BluChat.TestClient
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            List<Task> tasks = new List<Task>();
+
             NumberOfWindows count = new NumberOfWindows();
             count.ShowDialog();
 
@@ -25,13 +28,20 @@ namespace BluChat.TestClient
                 var window = new Main();
                 window.Text = window.Text + " - " + i;
 
-                Task.Run(new Action((() =>
+
+                var task = Task.Run(new Action((() =>
                         {
                             Application.Run(window);
                 })));
+
+                tasks.Add(task);
             }
 
-            Application.Run();
+            while(tasks.Any(x => x.IsCompleted == false))
+            {
+                Thread.Sleep(100);
+            }
+
 
         }
     }

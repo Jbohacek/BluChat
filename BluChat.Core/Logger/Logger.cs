@@ -20,19 +20,13 @@ namespace BluChat.Core.Logger
         public BindingList<ILog> GetBindingList() => new BindingList<ILog>(ToList());
         public int GetCount() => Logs.Count;
 
-        public Logger(ILogSaver saver)
-        {
-            Logs = new List<ILog>();
-            LogSaver = saver;
-        }
+        public Logger() : this(null, null) { }
 
-        public Logger(ILogLoader load)
-        {
-            Logs = new List<ILog>();
-            LogLoader = load;
-        }
+        public Logger(ILogSaver saver) : this(saver, null) { }
 
-        public Logger(ILogSaver saver, ILogLoader loader)
+        public Logger(ILogLoader loader) : this(null, loader) { }
+
+        public Logger(ILogSaver? saver, ILogLoader? loader)
         {
             Logs = new List<ILog>();
             LogSaver = saver;

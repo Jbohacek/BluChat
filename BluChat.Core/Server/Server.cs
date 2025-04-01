@@ -19,7 +19,7 @@ namespace BluChat.Core.Server
 
         private SimpleTcpServer server { get; set; }
 
-        public List<User> Users { get; set; }
+        public List<User> Users { get; set; } = new List<User>();
 
         private Server()
         {
@@ -35,15 +35,24 @@ namespace BluChat.Core.Server
 
         public void Start()
         {
-            Logger.Add(LogFactory.ServerStarted());
+            Logger.Add(LogFactory.ServerStarted(this.Adress));
             server.Start();
         }
+
+        //todo: Tohle fuj, dat pryc
+        public void Send(User user, string message)
+        {
+            server.Send(user.adress.ToString(), message);
+        }
+
 
         private void OnUserConnection(object sender, ConnectionEventArgs e)
         {
             User user = new User(e.IpPort);
             Logger.Add(LogFactory.UserConnected(user));
             Users.Add(user);
+
+            server.Send(user.adress.ToString(), "Hello to server :)");
         }
 
         private void OnUserDisconect(object sender, ConnectionEventArgs e)
@@ -61,7 +70,9 @@ namespace BluChat.Core.Server
 
         public void OnLogAdded(object sender, LogEventHandler e)
         {
+            Console.ForegroundColor = Enums.LevelExtensions.ToConsoleColor(e.Log.Level);
             Console.WriteLine(e.Log);
+            Console.ResetColor();
         }
 
 

@@ -9,9 +9,9 @@ namespace BluChat.Core.Logger
 {
     public static class LogFactory
     {
-        public static Log ServerStarted()
+        public static Log ServerStarted(IpPort adress)
         {
-            return new Log("Server has started", Enums.Level.Success);
+            return new Log("Server has started", adress.ToString(), Enums.Level.Success);
         }
 
         public static Log UserConnected(User user)

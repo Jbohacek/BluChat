@@ -16,5 +16,20 @@ namespace BluChat.Core
             ClientError,
             ServerError,
         }
+        public static class LevelExtensions
+        {
+            public static ConsoleColor ToConsoleColor(Level level)
+            {
+                return level switch
+                {
+                    Level.Informal => ConsoleColor.Gray,
+                    Level.Success => ConsoleColor.Green,
+                    Level.Warning => ConsoleColor.Yellow,
+                    Level.ClientError => ConsoleColor.Cyan,
+                    Level.ServerError => ConsoleColor.Red,
+                    _ => ConsoleColor.White
+                };
+            }
+        }
     }
 }
