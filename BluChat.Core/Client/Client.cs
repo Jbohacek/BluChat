@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SuperSimpleTcp;
 using DataReceivedEventArgs = SuperSimpleTcp.DataReceivedEventArgs;
 
-namespace BluChat.Core
+namespace BluChat.Core.Client
 {
     public class Client
     {
@@ -19,7 +19,7 @@ namespace BluChat.Core
         {
             _client = new SimpleTcpClient($"{ipAdress}:{port}");
 
-            
+
 
             _client.Events.Connected += Connected;
             _client.Events.Disconnected += Disconnected;

@@ -1,9 +1,9 @@
 using System.ComponentModel;
-using BluChat.Core;
 using SuperSimpleTcp;
 
 using System.Text;
 using System.Diagnostics;
+using BluChat.Core.Client;
 
 
 namespace BluChat.TestClient
@@ -15,7 +15,7 @@ namespace BluChat.TestClient
             InitializeComponent();
         }
 
-        private Core.Client client;
+        private Client client;
 
         public BindingList<Log> _logs = new BindingList<Log>();
 

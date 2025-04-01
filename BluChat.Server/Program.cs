@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Core.Server server = new Core.Server();
+            Core.Server.Server server = new Core.Server();
 
             
         }
