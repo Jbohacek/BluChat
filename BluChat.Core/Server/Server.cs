@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BluChat.Core.Logger;
+using BluChat.Core.UserFolder;
 using BluChat.Core.Logger.Interfaces;
 using SuperSimpleTcp;
 
@@ -12,26 +13,56 @@ namespace BluChat.Core.Server
 {
     public class Server
     {
-        private string Ip { get; set; }
-        private string Port { get; set; }
-        public string IpPort => Ip + ":" + Port;
+        public IpPort Adress { get; set; }
 
-        private ILogger _logger { get; set; }
+        private ILogger Logger { get; set; }
 
         private SimpleTcpServer server { get; set; }
 
+        public List<User> Users { get; set; }
 
         private Server()
         {
-            
+        }
+
+        private void SetEvents()
+        {
+            if (server == null) throw new Exception("server is null");
+            server.Events.ClientConnected += OnUserConnection!;
+            server.Events.ClientDisconnected += OnUserDisconect!;
+            Logger.LogAdded += OnLogAdded!;
         }
 
         public void Start()
         {
-            _logger.Add(LogFactory.ServerStarted());
+            Logger.Add(LogFactory.ServerStarted());
             server.Start();
         }
 
+        private void OnUserConnection(object sender, ConnectionEventArgs e)
+        {
+            User user = new User(e.IpPort);
+            Logger.Add(LogFactory.UserConnected(user));
+            Users.Add(user);
+        }
+
+        private void OnUserDisconect(object sender, ConnectionEventArgs e)
+        {
+            User? user = Users.SingleOrDefault(x => x.adress.ToString() == e.IpPort);
+            if (user == null)
+            {
+                Logger.Add(LogFactory.UserNotFound(e.IpPort));
+                return;
+            }
+
+            Users.Remove(user);
+            Logger.Add(LogFactory.UserDisconnected(user));
+        }
+
+        public void OnLogAdded(object sender, LogEventHandler e)
+        {
+            Console.WriteLine(e.Log);
+        }
 
 
         public class ServerBuilder()
@@ -39,21 +70,16 @@ namespace BluChat.Core.Server
             private readonly Server _server = new Server();
             private SimpleTcpServerSettings _settings = new SimpleTcpServerSettings();
 
-            public ServerBuilder SetIp(string ip)
+            public ServerBuilder SetAdress(IpPort adress)
             {
-                _server.Ip = ip;
+                _server.Adress = adress;
                 return this;
             }
 
-            public ServerBuilder SetPort(string port)
-            {
-                _server.Port = port;
-                return this;
-            }
 
             public ServerBuilder SetLogger(ILogger logger)
             {
-                _server._logger = logger;
+                _server.Logger = logger;
                 return this;
             }
 
@@ -65,11 +91,15 @@ namespace BluChat.Core.Server
 
             public Server Build()
             {
-                if (string.IsNullOrEmpty(_server.Ip)) throw new Exception("Ip not added");
-                if (string.IsNullOrEmpty(_server.Port)) throw new Exception("Port not set");
-                if (_server._logger == null) throw new Exception("Logger not set");
+                if (_server.Adress == null) throw new Exception("Address not added");
+                if (_server.Logger == null) throw new Exception("Logger not set");
 
-                _server.server = new SimpleTcpServer(_server.IpPort);
+
+                
+                _server.server = new SimpleTcpServer(_server.Adress.ToString());
+
+                
+                _server.SetEvents();
 
                 return _server;
             }

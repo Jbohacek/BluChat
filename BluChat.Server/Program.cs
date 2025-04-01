@@ -1,12 +1,19 @@
-﻿namespace BluChat.Server
+﻿
+
+using static BluChat.Core.Server.Server;
+
+namespace BluChat.Server
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Core.Server.Server server = new Core.Server();
+            ServerBuilder serverBuild = new ServerBuilder();
 
             
+
+
+
         }
     }
 }
