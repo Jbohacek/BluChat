@@ -1,32 +1,45 @@
-﻿namespace BluChat.Core.UserFolder
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using BluChat.Core;
+using BluChat.Core.Data;
+using BluChat.Core.Data.Interfaces;
+using BluChat.Core.UserFolder;
+
+
+namespace BluChat.Core.UserFolder
 {
-    public class User
+    [Table("tbUsers")]
+    public class User : ITable
     {
-        public Guid Id { get; set; }
+        [Key]public Guid Id { get; set; } = Guid.NewGuid();
 
-        public User(IpPort adress)
+        [MaxLength(30)] public string UserName { get; set; } = null!;
+        public string HashPassword { get; set; } = null!;
+        public string ProfilePicPath { get; set; } = null!;
+        
+
+
+        [NotMapped]public UserServerStatus? ServerStatus { get; set; }
+        [NotMapped]public IpPort? Adress => ServerStatus?.Adress;
+
+
+
+        public User(IpPort adress, DateTime timeOfConnection)
         {
-            this.adress = adress;
-            Id = Guid.NewGuid();
-            TimeOfConnection = DateTime.Now;
+            ServerStatus = new UserServerStatus(adress, timeOfConnection);
         }
 
-        public User(string ipPort) : this(new IpPort(ipPort))
+        public User()
+        {
+            
+        }
+
+        public User(string ipPort, DateTime timeOfConnection) : this(new IpPort(ipPort), timeOfConnection)
         {
 
         }
 
-        public IpPort adress { get; set; }
-        public DateTime TimeOfConnection { get; set; }
 
-        public TimeSpan TimeOnServer()
-        {
-            return DateTime.Now - TimeOfConnection;
-        }
-
-        public string TimeOnServerFormatted()
-        {
-            return TimeOnServer().ToString(@"hh\:mm\:ss");
-        }
     }
 }

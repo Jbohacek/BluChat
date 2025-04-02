@@ -4,10 +4,13 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Data;
 using BluChat.Core.Logger;
 using BluChat.Core.UserFolder;
 using BluChat.Core.Logger.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using SuperSimpleTcp;
+using BluChat.Core.Data.Interfaces;
 
 namespace BluChat.Core.Server
 {
@@ -20,6 +23,9 @@ namespace BluChat.Core.Server
         private SimpleTcpServer server { get; set; }
 
         public List<User> Users { get; set; } = new List<User>();
+
+        public UnitOfWork Database { get; set; }
+
 
         private Server()
         {
@@ -42,22 +48,22 @@ namespace BluChat.Core.Server
         //todo: Tohle fuj, dat pryc
         public void Send(User user, string message)
         {
-            server.Send(user.adress.ToString(), message);
+            server.Send(user.Adress.ToString(), message);
         }
 
 
         private void OnUserConnection(object sender, ConnectionEventArgs e)
         {
-            User user = new User(e.IpPort);
+            User user = new User(e.IpPort, DateTime.Now);
             Logger.Add(LogFactory.UserConnected(user));
             Users.Add(user);
 
-            server.Send(user.adress.ToString(), "Hello to server :)");
+            server.Send(user.Adress.ToString(), "Hello to server :)");
         }
 
         private void OnUserDisconect(object sender, ConnectionEventArgs e)
         {
-            User? user = Users.SingleOrDefault(x => x.adress.ToString() == e.IpPort);
+            User? user = Users.SingleOrDefault(x => x.Adress.ToString() == e.IpPort);
             if (user == null)
             {
                 Logger.Add(LogFactory.UserNotFound(e.IpPort));
@@ -97,6 +103,12 @@ namespace BluChat.Core.Server
             public ServerBuilder SetSettings(SimpleTcpServerSettings settings)
             {
                 _settings = settings;
+                return this;
+            }
+
+            public ServerBuilder SetDatabase(AppDbContext context)
+            {
+                _server.Database = new UnitOfWork(context);
                 return this;
             }
 

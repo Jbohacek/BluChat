@@ -16,12 +16,12 @@ namespace BluChat.Core.Logger
 
         public static Log UserConnected(User user)
         {
-            return new Log("User have connected",user.adress.ToString(), Enums.Level.Informal);
+            return new Log("User have connected",user.Adress.ToString(), Enums.Level.Informal);
         }
 
         public static Log UserDisconnected(User user)
         {
-            return new Log("User have disconected", user.adress.ToString(), Enums.Level.Informal);
+            return new Log("User have disconected", user.Adress.ToString(), Enums.Level.Informal);
 
         }
 
