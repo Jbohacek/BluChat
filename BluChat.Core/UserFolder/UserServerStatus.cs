@@ -14,8 +14,9 @@ namespace BluChat.Core.UserFolder
 
         }
 
-        [NotMapped] public IpPort Adress { get; set; } = adress;
-        [NotMapped] public DateTime TimeOfConnection { get; set; } = timeOfConnection;
+        public IpPort Adress { get; set; } = adress;
+        public DateTime TimeOfConnection { get; set; } = timeOfConnection;
+        public bool IsConnected { get; set; } = false;
 
         public TimeSpan TimeOnServer()
         {

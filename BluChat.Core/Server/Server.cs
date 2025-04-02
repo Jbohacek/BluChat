@@ -22,10 +22,9 @@ namespace BluChat.Core.Server
 
         private SimpleTcpServer server { get; set; }
 
-        public List<User> Users { get; set; } = new List<User>();
+        public List<User> ConnectedUsers { get; set; } = new List<User>();
 
         public UnitOfWork Database { get; set; }
-
 
         private Server()
         {
@@ -56,21 +55,21 @@ namespace BluChat.Core.Server
         {
             User user = new User(e.IpPort, DateTime.Now);
             Logger.Add(LogFactory.UserConnected(user));
-            Users.Add(user);
+            ConnectedUsers.Add(user);
 
             server.Send(user.Adress.ToString(), "Hello to server :)");
         }
 
         private void OnUserDisconect(object sender, ConnectionEventArgs e)
         {
-            User? user = Users.SingleOrDefault(x => x.Adress.ToString() == e.IpPort);
+            User? user = ConnectedUsers.SingleOrDefault(x => x.Adress.ToString() == e.IpPort);
             if (user == null)
             {
                 Logger.Add(LogFactory.UserNotFound(e.IpPort));
                 return;
             }
 
-            Users.Remove(user);
+            ConnectedUsers.Remove(user);
             Logger.Add(LogFactory.UserDisconnected(user));
         }
 
@@ -86,6 +85,7 @@ namespace BluChat.Core.Server
         {
             private readonly Server _server = new Server();
             private SimpleTcpServerSettings _settings = new SimpleTcpServerSettings();
+            private readonly User _adminUser = new User();
 
             public ServerBuilder SetAdress(IpPort adress)
             {
@@ -106,23 +106,44 @@ namespace BluChat.Core.Server
                 return this;
             }
 
-            public ServerBuilder SetDatabase(AppDbContext context)
+            public ServerBuilder SetDatabase(SqlLiteContext context)
             {
                 _server.Database = new UnitOfWork(context);
                 return this;
             }
 
+            public ServerBuilder SetAdminUserPassword(string password)
+            {
+                _adminUser.UserName = "Admin";
+                _adminUser.HashPassword = password;
+                return this;
+            }
+
+
+
             public Server Build()
             {
                 if (_server.Adress == null) throw new Exception("Address not added");
                 if (_server.Logger == null) throw new Exception("Logger not set");
+                if (_server.Database == null) throw new Exception("Database not set");
 
-
-                
+                //Server inicilaization
                 _server.server = new SimpleTcpServer(_server.Adress.ToString());
+                _server.SetEvents();
+
+                //Database initialization
+                _server.Database.Logger = _server.Logger;
+
+                if (!_server.Database.Users.Exists(x => x.UserName == _adminUser.UserName))
+                {
+                    _server.Database.Users.Add(_adminUser);
+                    _server.Database.Save();
+                }
 
                 
-                _server.SetEvents();
+
+                
+                
 
                 return _server;
             }

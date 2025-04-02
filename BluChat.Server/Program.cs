@@ -17,20 +17,11 @@ namespace BluChat.ServerConsole
             serverBuild.SetAdress(new IpPort("127.0.0.1", 9000));
             serverBuild.SetLogger(new Logger());
             serverBuild.SetDatabase(new SqlLiteContext("BluChat"));
+            serverBuild.SetAdminUserPassword("123456");
 
             Server server = serverBuild.Build();
             server.Start();
 
-            User jbo = new User()
-            {
-                UserName = "jbohacek",
-                HashPassword = "123456"
-            };
-
-            server.Database.Users.GetAll();
-
-            server.Database.Users.Add(jbo);
-            server.Database.Save();
 
             Task.Run(() => { HandleInputs(server); });
 
@@ -70,7 +61,7 @@ namespace BluChat.ServerConsole
                     case "send":
                         if (inputs.Length <= 2) continue;
                         IpPort adress = new IpPort(inputs[1]);
-                        User user = server.Users.Find(x => adress.ToString() == x.Adress.ToString());
+                        User user = server.ConnectedUsers.Find(x => adress.ToString() == x.Adress.ToString());
                         StringBuilder message = new StringBuilder();
                         for (int i = 2; i < inputs.Length; i++)
                         {

@@ -9,16 +9,16 @@ namespace BluChat.Core.Logger
 {
     public class Log : ILog
     {
-        public Log(string name,string message = "", Enums.Level level = Enums.Level.Informal)
+        public Log(string name,string? message = "", Enums.Level level = Enums.Level.Informal)
         {
             CreateLog(name,message, DateTime.Now,level );
         }
-        public Log(string name, Enums.Level level = Enums.Level.Informal, string message = "")
+        public Log(string name, Enums.Level level = Enums.Level.Informal, string? message = "")
         {
             CreateLog(name, message, DateTime.Now, level);
         }
 
-        private void CreateLog(string name ,string message, DateTime time,Enums.Level level)
+        private void CreateLog(string name ,string? message, DateTime time,Enums.Level level)
         {
             Name = name;
             Content = message;
@@ -28,7 +28,7 @@ namespace BluChat.Core.Logger
 
         public string Name { get; set; }
         public Guid Id { get; set; }
-        public string Content { get; set; }
+        public string? Content { get; set; }
         public DateTime Date { get; set; }
         public Enums.Level Level { get; set; }
 

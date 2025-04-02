@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using BluChat.Core;
@@ -16,13 +17,13 @@ namespace BluChat.Core.UserFolder
 
         [MaxLength(30)] public string UserName { get; set; } = null!;
         public string HashPassword { get; set; } = null!;
-        public string ProfilePicPath { get; set; } = null!;
+        [DefaultValue("Default")]public string ProfilePicPath { get; set; } = "Default";
         
 
 
         [NotMapped]public UserServerStatus? ServerStatus { get; set; }
         [NotMapped]public IpPort? Adress => ServerStatus?.Adress;
-
+        
 
 
         public User(IpPort adress, DateTime timeOfConnection)

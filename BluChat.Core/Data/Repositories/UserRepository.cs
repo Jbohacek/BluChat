@@ -8,14 +8,19 @@ using BluChat.Core.UserFolder;
 
 namespace BluChat.Core.Data.Repositories
 {
-    public class UserRepository(AppDbContext context) : Repo<User>(context)
+    public class UserRepository(SqlLiteContext context) : Repo<User>(context)
     {
-        private readonly AppDbContext _context = context;
+        private readonly SqlLiteContext _context = context;
 
         public override void Add(User item)
         {
             item.HashPassword = PasswordManager.HashPassword(item.HashPassword);
             base.Add(item);
+        }
+
+        public bool Exists(Func<User,bool> predicate)
+        {
+            return _context.Users.Any(predicate);
         }
     }
 }

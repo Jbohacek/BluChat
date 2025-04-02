@@ -12,10 +12,10 @@ namespace BluChat.Core.Data
 {
     public abstract class Repo<T> where T : class , ITable
     {
-        public AppDbContext Context;
+        public SqlLiteContext Context;
         internal DbSet<T> _dbSet;
 
-        protected Repo(AppDbContext context)
+        protected Repo(SqlLiteContext context)
         {
             Context = context;
             _dbSet = context.Set<T>();

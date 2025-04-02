@@ -24,7 +24,7 @@ namespace BluChat.Core.Server
             AddTitle("User List");
             sb.Append("Guid\t\t\t\t\tadress\t\t\tTimeSpendOn\tTimeOfJoin\n");
 
-            Server.Users.ForEach(x =>
+            Server.ConnectedUsers.ForEach(x =>
             {
                 sb.Append($"{x.Id}\t{x.Adress}\t\t{x.ServerStatus.TimeOnServerFormatted()}\t{x.ServerStatus.TimeOfConnection.ToUniversalTime()}\n");
             });

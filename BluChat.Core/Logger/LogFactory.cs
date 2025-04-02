@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluChat.Core.UserFolder;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace BluChat.Core.Logger
 {
@@ -25,9 +26,14 @@ namespace BluChat.Core.Logger
 
         }
 
-        public static Log UserNotFound(string ipPort)
+        public static Log UserNotFound(string? ipPort)
         {
             return new Log("User was not found", ipPort, Enums.Level.Warning);
+        }
+
+        public static Log ContextChange(EntityEntry entryChanged)
+        {
+            return new Log(entryChanged.State.ToString(), entryChanged.Entity.GetType().ToString(), Enums.Level.Informal);
         }
     }
 }

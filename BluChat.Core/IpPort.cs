@@ -24,7 +24,7 @@ namespace BluChat.Core
             Port = int.Parse(split[1]);
         }
 
-        public override string ToString()
+        public override string? ToString()
         {
             return Ip + ":" + Port;
         }

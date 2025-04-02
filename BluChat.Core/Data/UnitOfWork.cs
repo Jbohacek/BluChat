@@ -1,16 +1,20 @@
 ﻿using BluChat.Core.Data.Interfaces;
 using BluChat.Core.Data.Repositories;
+using BluChat.Core.Logger;
+using BluChat.Core.Logger.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BluChat.Core.Data;
 
 public class UnitOfWork
 {
-    private readonly AppDbContext _context;
+    private readonly SqlLiteContext _context;
 
     public UserRepository Users { get; }
 
+    public ILogger Logger { get; set; }
 
-    public UnitOfWork(AppDbContext context)
+    public UnitOfWork(SqlLiteContext context)
     {
         _context = context;
 
@@ -19,6 +23,15 @@ public class UnitOfWork
 
     public void Save()
     {
+        var changes = _context.ChangeTracker.Entries()
+            .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified || e.State == EntityState.Deleted)
+            .ToList();
+
+        foreach (var entityEntry in changes)
+        {
+            Logger.Add(LogFactory.ContextChange(entityEntry));
+        }
+
         _context.SaveChanges();
     }
 }
