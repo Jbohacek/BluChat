@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BluChat.Core.Logger.Log">
+    <Position X="6" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAgAAAAAEAAAAAIQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Log.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.323" />
+  </Class>
+  <Class Name="BluChat.Core.Logger.Logger">
+    <Position X="8.5" Y="3" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ACYAgIAQAAAAAACAAAAABAAAAIAAAQAAAAgAAABAABA=</HashCode>
+      <FileName>Logger\Logger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.319" />
+  </Class>
+  <Class Name="BluChat.Core.Server.Server">
+    <Position X="1.5" Y="8" Width="2.5" />
+    <NestedTypes>
+      <Class Name="BluChat.Core.Server.Server.ServerBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Server\Server.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gCAAACAAACIAAAAAAEAAAAAAAAgAgAQAAAAAAAAAAAI=</HashCode>
+      <FileName>Server\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Logger.LogEventHandler">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Logger\LogEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Logger.LogFactory">
+    <Position X="11.75" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAACAAAAAAAEAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Logger\LogFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Server.ServerConsoleInterface">
+    <Position X="4.25" Y="8" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgIAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Server\ServerConsoleInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.UserFolder.User">
+    <Position X="1.5" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAoAQAAAAAAAAA=</HashCode>
+      <FileName>UserFolder\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BluChat.Core.Logger.Interfaces.ILogLoader">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger\Interfaces\ILogLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BluChat.Core.Logger.Interfaces.ILogSaver">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Logger\Interfaces\ILogSaver.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
