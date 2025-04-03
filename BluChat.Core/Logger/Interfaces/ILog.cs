@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BluChat.Core.Logger
+namespace BluChat.Core.Logger.Interfaces
 {
     public interface ILog
     {

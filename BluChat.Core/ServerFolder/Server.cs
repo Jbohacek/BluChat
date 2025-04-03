@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using SuperSimpleTcp;
 using BluChat.Core.Data.Interfaces;
 
-namespace BluChat.Core.Server
+namespace BluChat.Core.ServerFolder
 {
     public class Server
     {
@@ -40,7 +40,7 @@ namespace BluChat.Core.Server
 
         public void Start()
         {
-            Logger.Add(LogFactory.ServerStarted(this.Adress));
+            Logger.Add(LogFactory.ServerStarted(Adress));
             server.Start();
         }
 
