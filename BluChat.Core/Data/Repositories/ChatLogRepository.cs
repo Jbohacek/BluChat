@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BluChat.Core.Data.Repositories
 {
-    public class ChatMessageRepository(SqlLiteContext context) : Repo<MessageDataLog>(context)
+    public class ChatLogRepository(SqlLiteContext context) : Repo<MessageDataLog>(context)
     {
-        private readonly SqlLiteContext _context;
+        private SqlLiteContext _context;
 
     }
 }

@@ -18,6 +18,11 @@ namespace BluChat.Core.Data.Repositories
             base.Add(item);
         }
 
+        public User GetAdmin()
+        {
+            return this.GetFirstOrDefault(x => x.UserName == "Admin");
+        }
+
         public bool Exists(Func<User,bool> predicate)
         {
             return _context.Users.Any(predicate);

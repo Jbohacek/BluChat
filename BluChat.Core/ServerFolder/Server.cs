@@ -11,6 +11,7 @@ using BluChat.Core.Logger.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using SuperSimpleTcp;
 using BluChat.Core.Data.Interfaces;
+using BluChat.Core.Messages;
 
 namespace BluChat.Core.ServerFolder
 {
@@ -25,6 +26,8 @@ namespace BluChat.Core.ServerFolder
         public List<User> ConnectedUsers { get; set; } = new List<User>();
 
         public UnitOfWork Database { get; set; }
+        public MessageManager MessageManager { get; set; }
+        
 
         private Server()
         {
@@ -140,8 +143,8 @@ namespace BluChat.Core.ServerFolder
                     _server.Database.Save();
                 }
 
-                
-
+                //Server ChatManager
+                _server.MessageManager = new MessageManager(_server.Database, _server.Logger);
                 
                 
 

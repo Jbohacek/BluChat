@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BluChat.Core.Messages.MessageTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,16 @@ using System.Threading.Tasks;
 
 namespace BluChat.Core.Messages
 {
-    class MessageFactory
+    public class MessageFactory
     {
+        public static StringMessage GetTestMessage()
+        {
+            StringMessage message = new StringMessage();
+            message.Content = "Test";
+
+
+
+            return message;
+        }
     }
 }

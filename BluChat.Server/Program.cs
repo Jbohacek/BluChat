@@ -3,6 +3,7 @@ using System.Text;
 using BluChat.Core;
 using BluChat.Core.Data;
 using BluChat.Core.Logger;
+using BluChat.Core.Messages;
 using BluChat.Core.Messages.Abstracts;
 using BluChat.Core.Messages.MessageTypes;
 using BluChat.Core.Messages.SenderReciever;
@@ -25,10 +26,16 @@ namespace BluChat.ServerConsole
             Server server = serverBuild.Build();
             server.Start();
 
-            var seriliazer = new MessageSerializer();
-            
+            MessageSerializer serializer = new MessageSerializer();
+            StringMessage message = MessageFactory.GetTestMessage();
+            message.Sender = new SenderUser(server.Database.Users.GetAdmin());
 
-            string stringMessage = seriliazer.SerializeMessageToString(new StringMessage());
+
+            string converted = serializer.SerializeMessageToString(message);
+
+            server.MessageManager.RecieveMessage(converted);
+
+            
 
 
 

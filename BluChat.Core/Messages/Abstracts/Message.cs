@@ -4,6 +4,7 @@ using BluChat.Core.ServerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -15,13 +16,12 @@ namespace BluChat.Core.Messages.Abstracts
     {
         [XmlIgnore] Server Server { get; set; }
 
-        [XmlIgnore]  public SenderUser Sender { get; set; }
+        public SenderUser Sender { get; set; }
         [XmlIgnore]  public IEnumerable<RecieverUser> Reciever { get; set; } = new List<RecieverUser>();
 
         public DateTime SendTime { get; set; } = DateTime.Now;
 
-        public abstract void MessangeHandler();
-
+        public abstract void MessangeHandler(MessageManager manager);
 
     }
 }

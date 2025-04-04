@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace BluChat.Core.Messages.SenderReciever
+namespace BluChat.Core.Messages
 {
     public class MessageSerializer
     {
@@ -19,6 +19,14 @@ namespace BluChat.Core.Messages.SenderReciever
             {
                 serializer.Serialize(writer, message);
                 return writer.ToString();
+            }
+        }
+
+        public Message DeserializeMessageFromString(string messageString)
+        {
+            using (StringReader reader = new StringReader(messageString))
+            {
+                return (Message)serializer.Deserialize(reader);
             }
         }
     }

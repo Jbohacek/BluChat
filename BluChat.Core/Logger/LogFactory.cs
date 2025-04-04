@@ -35,5 +35,10 @@ namespace BluChat.Core.Logger
         {
             return new Log(entryChanged.State.ToString(), entryChanged.Entity.GetType().ToString(), Enums.Level.Informal);
         }
+
+        public static Log StringMessageRecieved(User sender, string content)
+        {
+            return new Log(content, sender.UserName, Enums.Level.Informal);
+        }
     }
 }
