@@ -1,5 +1,4 @@
 ﻿using BluChat.Core.Data;
-using BluChat.Core.Logger.Interfaces;
 using BluChat.Core.Messages.Abstracts;
 using BluChat.Core.Messages.MessageTypes;
 using System;
@@ -7,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Logger;
+using Microsoft.Extensions.Logging;
+using ILogger = BluChat.Core.Logger.Interfaces.ILogger;
 
 namespace BluChat.Core.Messages
 {
@@ -27,10 +29,20 @@ namespace BluChat.Core.Messages
 
         public bool RecieveMessage(string messageString)
         {
-            Message message = serializer.DeserializeMessageFromString(messageString);
-            message.MessangeHandler(this);
+            MessageBase messageBase = serializer.DeserializeMessageFromString(messageString);
+            messageBase.MessangeHandler(this);
+
+            AddMessageToDatabase(messageBase);
 
             return false;
+        }
+
+        public void AddMessageToDatabase(MessageBase messageBase)
+        {
+            var x = messageBase.Convert();
+
+            Database.Messages.Add(messageBase.Convert());
+            Database.Save();
         }
 
 

@@ -1,5 +1,6 @@
 ﻿using BluChat.Core.Data.Interfaces;
 using BluChat.Core.Data.Repositories;
+using BluChat.Core.Messages.Data;
 using BluChat.Core.UserFolder;
 using Microsoft.EntityFrameworkCore;
 using SQLitePCL;
@@ -30,7 +31,7 @@ public class SqlLiteContext : DbContext, IAppDbContext
     }
 
     public DbSet<User> Users { get; set; }
-    //public DbSet<ChatMessageRepository> Chats { get; set; }
-    //public DbSet<ChatLogRepository> Messages { get; set; }
+    public DbSet<Chat> Chats { get; set; }
+    public DbSet<Message> Messages { get; set; }
 
 }

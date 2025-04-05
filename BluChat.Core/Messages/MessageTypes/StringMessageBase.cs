@@ -6,10 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Messages.Data;
 
 namespace BluChat.Core.Messages.MessageTypes
 {
-    public class StringMessage : Message
+    public class StringMessageBase : MessageBase
     {
         public string Content { get; set; } = "Test";
         public override void MessangeHandler(MessageManager manager)
@@ -18,11 +19,22 @@ namespace BluChat.Core.Messages.MessageTypes
             manager.Logger.Add(LogFactory.StringMessageRecieved(Sender.User, Content));
         }
 
-        public static StringMessage Convert(Message message)
+        public override Message Convert()
         {
-            if (message is StringMessage)
+            return new Message()
             {
-                return (StringMessage)message;
+                Id = Guid.NewGuid(),
+                ParentChat = ParentChat,
+                Sender = Sender.User,
+                UnformatedMessage = Content
+            };
+        }
+
+        public static StringMessageBase Convert(MessageBase messageBase)
+        {
+            if (messageBase is StringMessageBase)
+            {
+                return (StringMessageBase)messageBase;
             }
 
             throw new InvalidOperationException("špatny typ");

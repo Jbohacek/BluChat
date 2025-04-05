@@ -9,14 +9,14 @@ namespace BluChat.Core.Messages
 {
     public class MessageFactory
     {
-        public static StringMessage GetTestMessage()
+        public static StringMessageBase GetTestMessage()
         {
-            StringMessage message = new StringMessage();
-            message.Content = "Test";
+            StringMessageBase messageBase = new StringMessageBase();
+            messageBase.Content = "Test";
 
 
 
-            return message;
+            return messageBase;
         }
     }
 }

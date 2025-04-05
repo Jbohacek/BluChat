@@ -5,10 +5,12 @@ using BluChat.Core.Data;
 using BluChat.Core.Logger;
 using BluChat.Core.Messages;
 using BluChat.Core.Messages.Abstracts;
+using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes;
 using BluChat.Core.Messages.SenderReciever;
 using BluChat.Core.ServerFolder;
 using BluChat.Core.UserFolder;
+using Microsoft.EntityFrameworkCore;
 
 namespace BluChat.ServerConsole
 {
@@ -26,16 +28,27 @@ namespace BluChat.ServerConsole
             Server server = serverBuild.Build();
             server.Start();
 
+            if (!server.Database.Chats.GetAll().Any(x => x.Name == "TestChat"))
+            {
+                Chat chat = new Chat("TestChat");
+                chat.AddUserToChat(server.Database.Users.GetAdmin());
+                server.Database.Chats.Add(chat);
+                server.Database.Save();
+            }
+
+
+
             MessageSerializer serializer = new MessageSerializer();
-            StringMessage message = MessageFactory.GetTestMessage();
-            message.Sender = new SenderUser(server.Database.Users.GetAdmin());
+            StringMessageBase messageBase = MessageFactory.GetTestMessage();
+            messageBase.Sender = new SenderUser(server.Database.Users.GetAdmin());
+            messageBase.ParentChat = server.Database.Chats.GetFirstOrDefault(x => x.Name == "TestChat");
+            messageBase.SendTime = DateTime.Now;
 
-
-            string converted = serializer.SerializeMessageToString(message);
+            string converted = serializer.SerializeMessageToString(messageBase);
 
             server.MessageManager.RecieveMessage(converted);
 
-            
+
 
 
 

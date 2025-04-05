@@ -11,8 +11,8 @@ public class UnitOfWork
     private readonly SqlLiteContext _context;
 
     public UserRepository Users { get; }
-    public ChatMessageRepository Chats { get; }
-    public ChatLogRepository Messages { get; }
+    public ChatRepository Chats { get; }
+    public MessageRepository Messages { get; }
 
     public ILogger Logger { get; set; }
 
@@ -21,8 +21,8 @@ public class UnitOfWork
         _context = context;
 
         Users = new UserRepository(_context);
-        //Chats = new ChatMessageRepository(_context);
-        //Messages = new ChatLogRepository(_context);
+        Chats = new ChatRepository(_context);
+        Messages = new MessageRepository(_context);
     }
 
     public void Save()

@@ -3,6 +3,7 @@ using System;
 using BluChat.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BluChat.Core.Migrations
 {
     [DbContext(typeof(SqlLiteContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250405124527_ChatNameAdd")]
+    partial class ChatNameAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
@@ -69,6 +72,9 @@ namespace BluChat.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("ChatId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -84,22 +90,9 @@ namespace BluChat.Core.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChatId");
+
                     b.ToTable("tbUsers");
-                });
-
-            modelBuilder.Entity("ChatUser", b =>
-                {
-                    b.Property<Guid>("ChatsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("UsersId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ChatsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("ChatUser");
                 });
 
             modelBuilder.Entity("BluChat.Core.Messages.Data.Message", b =>
@@ -111,7 +104,7 @@ namespace BluChat.Core.Migrations
                         .IsRequired();
 
                     b.HasOne("BluChat.Core.UserFolder.User", "Sender")
-                        .WithMany("Messages")
+                        .WithMany()
                         .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -121,29 +114,18 @@ namespace BluChat.Core.Migrations
                     b.Navigation("Sender");
                 });
 
-            modelBuilder.Entity("ChatUser", b =>
+            modelBuilder.Entity("BluChat.Core.UserFolder.User", b =>
                 {
                     b.HasOne("BluChat.Core.Messages.Data.Chat", null)
-                        .WithMany()
-                        .HasForeignKey("ChatsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BluChat.Core.UserFolder.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Users")
+                        .HasForeignKey("ChatId");
                 });
 
             modelBuilder.Entity("BluChat.Core.Messages.Data.Chat", b =>
                 {
                     b.Navigation("Messages");
-                });
 
-            modelBuilder.Entity("BluChat.Core.UserFolder.User", b =>
-                {
-                    b.Navigation("Messages");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

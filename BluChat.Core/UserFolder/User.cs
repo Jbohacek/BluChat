@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using BluChat.Core;
 using BluChat.Core.Data;
 using BluChat.Core.Data.Interfaces;
+using BluChat.Core.Messages.Data;
 using BluChat.Core.UserFolder;
 
 
@@ -19,7 +20,8 @@ namespace BluChat.Core.UserFolder
         public string HashPassword { get; set; } = null!;
         [DefaultValue("Default")]public string ProfilePicPath { get; set; } = "Default";
         
-
+        public List<Chat> Chats { get; set; } = new List<Chat>();
+        public List<Message> Messages { get; set; } = new List<Message>();
 
         [NotMapped]public UserServerStatus? ServerStatus { get; set; }
         [NotMapped]public IpPort? Adress => ServerStatus?.Adress;

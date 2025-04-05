@@ -11,22 +11,22 @@ namespace BluChat.Core.Messages
 {
     public class MessageSerializer
     {
-        private XmlSerializer serializer = new XmlSerializer(typeof(Message), new Type[] { typeof(StringMessage) });
+        private XmlSerializer serializer = new XmlSerializer(typeof(MessageBase), new Type[] { typeof(StringMessageBase) });
 
-        public string SerializeMessageToString(Message message)
+        public string SerializeMessageToString(MessageBase messageBase)
         {
             using (StringWriter writer = new StringWriter())
             {
-                serializer.Serialize(writer, message);
+                serializer.Serialize(writer, messageBase);
                 return writer.ToString();
             }
         }
 
-        public Message DeserializeMessageFromString(string messageString)
+        public MessageBase DeserializeMessageFromString(string messageString)
         {
             using (StringReader reader = new StringReader(messageString))
             {
-                return (Message)serializer.Deserialize(reader);
+                return (MessageBase)serializer.Deserialize(reader);
             }
         }
     }
