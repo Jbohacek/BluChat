@@ -14,5 +14,10 @@ namespace BluChat.Core.Messages.SenderReciever
         {
             
         }
+
+        public RecieverUser() : base(new User())
+        {
+            
+        }
     }
 }

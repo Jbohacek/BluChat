@@ -23,6 +23,7 @@ namespace BluChat.Core.Logger
             Name = name;
             Content = message;
             Date = time;
+            Level = level;
             Id = Guid.NewGuid();
         }
 

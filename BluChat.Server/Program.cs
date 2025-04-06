@@ -38,15 +38,15 @@ namespace BluChat.ServerConsole
 
 
 
-            MessageSerializer serializer = new MessageSerializer();
-            StringMessageBase messageBase = MessageFactory.GetTestMessage();
-            messageBase.Sender = new SenderUser(server.Database.Users.GetAdmin());
-            messageBase.ParentChat = server.Database.Chats.GetFirstOrDefault(x => x.Name == "TestChat");
-            messageBase.SendTime = DateTime.Now;
+            //MessageSerializer serializer = new MessageSerializer();
+            //StringMessage message = MessageFactory.GetTestMessage();
+            //message.Sender = new SenderUser(server.Database.Users.GetAdmin());
+            //message.ParentChat = server.Database.Chats.GetFirstOrDefault(x => x.Name == "TestChat");
+            //message.SendTime = DateTime.Now;
 
-            string converted = serializer.SerializeMessageToString(messageBase);
+            //string converted = serializer.SerializeMessageToString(message);
 
-            server.MessageManager.RecieveMessage(converted);
+            //server.MessageServerManager.RecieveMessage(converted);
 
 
 
@@ -101,9 +101,19 @@ namespace BluChat.ServerConsole
                         server.Send(user, message.ToString());
                         break;
 
+                    case "help":
+                        Console.WriteLine("<--- Help --->");
+                        Console.WriteLine("List\t\t\t\t - shows every client connected");
+                        Console.WriteLine("send [Ip]:[Port] [Message]\t - sends [Message] to client with [Ip:Port]");
+                        Console.WriteLine("clear\t\t\t\t - clears the console");
+                        Console.WriteLine("help\t\t\t\t - helps");
+                        Console.WriteLine("<--- End --->");
+
+                        break;
+
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(">> Command not found");
+                        Console.WriteLine(">> Command not found - try \"Help\" for more commands");
                         Console.ResetColor();
                         break;
                 }

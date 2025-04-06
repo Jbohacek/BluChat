@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Messages.MessageTypes.GetChats;
 
 namespace BluChat.Core.Messages
 {
     public class MessageFactory
     {
-        public static StringMessageBase GetTestMessage()
+        public static StringMessage GetTestMessage()
         {
-            StringMessageBase messageBase = new StringMessageBase();
-            messageBase.Content = "Test";
+            StringMessage message = new StringMessage();
+            message.Content = "Test";
 
 
 
-            return messageBase;
+            return message;
         }
+
+
     }
 }

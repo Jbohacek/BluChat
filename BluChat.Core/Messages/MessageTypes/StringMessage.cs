@@ -10,13 +10,20 @@ using BluChat.Core.Messages.Data;
 
 namespace BluChat.Core.Messages.MessageTypes
 {
-    public class StringMessageBase : MessageBase
+    public class StringMessage : MessageBaseServer
     {
         public string Content { get; set; } = "Test";
-        public override void MessangeHandler(MessageManager manager)
+
+        public StringMessage()
         {
-            base.Sender.FindUser(manager);
-            manager.Logger.Add(LogFactory.StringMessageRecieved(Sender.User, Content));
+            ToSave = true;
+        }
+        
+        public override void MessangeHandler(MessageServerManager serverManager)
+        {
+            base.Sender.FindUser(serverManager);
+            serverManager.Logger.Add(LogFactory.StringMessageRecieved(Sender.User, Content));
+            serverManager.AddMessageToDatabase(this);
         }
 
         public override Message Convert()
@@ -30,11 +37,11 @@ namespace BluChat.Core.Messages.MessageTypes
             };
         }
 
-        public static StringMessageBase Convert(MessageBase messageBase)
+        public static StringMessage Convert(MessageBaseServer messageBaseServer)
         {
-            if (messageBase is StringMessageBase)
+            if (messageBaseServer is StringMessage)
             {
-                return (StringMessageBase)messageBase;
+                return (StringMessage)messageBaseServer;
             }
 
             throw new InvalidOperationException("špatny typ");

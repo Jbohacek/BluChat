@@ -3,7 +3,10 @@ using SuperSimpleTcp;
 
 using System.Text;
 using System.Diagnostics;
-using BluChat.Core.Client;
+using BluChat.Core.Messages.MessageTypes.GetChats;
+using BluChat.Core.ClientFolder;
+using BluChat.Core.ClientFolder.EvenHandlers;
+using System;
 
 
 namespace BluChat.TestClient
@@ -27,16 +30,23 @@ namespace BluChat.TestClient
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-            client = new Client(txt_IpAdress.Text, txt_port.Text);
-            client.Events.DataReceived += DataReceived;
+            client = new Client(txt_IpAdress.Text, Convert.ToInt32(txt_port.Text));
+            client.TcpEvents.DataReceived += DataReceived;
+            client.Events.UserVerified += UserVerified;
+            client.Connect();
+        }
+
+
+
+        private void btn_dissconnect_Click(object sender, EventArgs e)
+        {
+            client.Disconnect();
         }
 
         private void DataReceived(object sender, SuperSimpleTcp.DataReceivedEventArgs e)
         {
             string message = $"[{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}";
             var action = new Action((() => AddLog(message)));
-
-
             if (InvokeRequired)
             {
                 Invoke(action);
@@ -45,8 +55,31 @@ namespace BluChat.TestClient
             {
                 action.Invoke();
             }
+        }
+
+        private void UserVerified(object sender, UserVerifiedEventHandler e)
+        {
+            var action = new Action(() =>
+            {
+                txt_output.Text =
+                    $"{e.user.Id}\n{e.user.UserName}\n{e.user.ProfilePicPath}\nChat Count: {e.user.Chats.Count}";
+            });
+            InvokeRequiredTask(action);
 
         }
+
+        private void InvokeRequiredTask(Action action)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(action);
+            }
+            else
+            {
+                action.Invoke();
+            }
+        }
+
 
         private void AddLog(string message)
         {
@@ -64,5 +97,27 @@ namespace BluChat.TestClient
                 time = DateTime.Now;
             }
         }
+
+        private void btn_RequestChats_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_authenticate_Click(object sender, EventArgs e)
+        {
+            if (!client.IsConnected)
+            {
+                MessageBox.Show("Nepøipojeno k server!");
+                return;
+            }
+            client.Manager.SendAuthentication(txt_Username.Text, txt_Password.Text);
+        }
+
+     
     }
 }

@@ -24,9 +24,10 @@ namespace BluChat.Core.ServerFolder
         private SimpleTcpServer server { get; set; }
 
         public List<User> ConnectedUsers { get; set; } = new List<User>();
+        public List<UserServerStatus> AnonymousUsers { get; set; } = new List<UserServerStatus>();
 
         public UnitOfWork Database { get; set; }
-        public MessageManager MessageManager { get; set; }
+        public MessageServerManager MessageServerManager { get; set; }
         
 
         private Server()
@@ -38,7 +39,18 @@ namespace BluChat.Core.ServerFolder
             if (server == null) throw new Exception("server is null");
             server.Events.ClientConnected += OnUserConnection!;
             server.Events.ClientDisconnected += OnUserDisconect!;
+            server.Events.DataReceived += OnDataReceived;
+
+
+
             Logger.LogAdded += OnLogAdded!;
+        }
+
+        private void OnDataReceived(object? sender, DataReceivedEventArgs e)
+        {
+            string content = Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count);
+
+            MessageServerManager.RecieveMessage(content,e.IpPort);
         }
 
         public void Start()
@@ -56,11 +68,16 @@ namespace BluChat.Core.ServerFolder
 
         private void OnUserConnection(object sender, ConnectionEventArgs e)
         {
-            User user = new User(e.IpPort, DateTime.Now);
-            Logger.Add(LogFactory.UserConnected(user));
-            ConnectedUsers.Add(user);
+            UserServerStatus status = new UserServerStatus(e.IpPort,DateTime.Now); 
+            AnonymousUsers.Add(status);
+            Logger.Add(LogFactory.AnonymousUserConnected(new IpPort(e.IpPort)));
 
-            server.Send(user.Adress.ToString(), "Hello to server :)");
+
+            //User user = new User(e.IpPort, DateTime.Now);
+            //Logger.Add(LogFactory.UserConnected(user));
+            //ConnectedUsers.Add(user);
+
+            //server.Send(user.Adress.ToString(), "Hello to server :)");
         }
 
         private void OnUserDisconect(object sender, ConnectionEventArgs e)
@@ -144,7 +161,7 @@ namespace BluChat.Core.ServerFolder
                 }
 
                 //Server ChatManager
-                _server.MessageManager = new MessageManager(_server.Database, _server.Logger);
+                _server.MessageServerManager = new MessageServerManager(_server.Database, _server.Logger,_server.server,_server);
                 
                 
 

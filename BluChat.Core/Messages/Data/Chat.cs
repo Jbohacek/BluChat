@@ -16,12 +16,12 @@ namespace BluChat.Core.Messages.Data
     {
         [Key] public Guid Id { get; set; } = Guid.NewGuid();
 
-        [XmlIgnore]public string Name { get; set; } = null!;
+        public string Name { get; set; } = null!;
 
         [XmlIgnore]public List<User> Users { get; set; } = new List<User>();
         [XmlIgnore]public List<Message> Messages { get; set; } = new List<Message>();
 
-        [XmlIgnore]public DateTime CreationOfCreation { get; set; } = DateTime.Now;
+        public DateTime CreationOfCreation { get; set; } = DateTime.Now;
 
         [XmlIgnore] public DateTime LastTimeEdited { get; set; } = DateTime.Now;
 

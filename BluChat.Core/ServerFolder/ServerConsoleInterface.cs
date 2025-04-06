@@ -28,6 +28,12 @@ namespace BluChat.Core.ServerFolder
             {
                 sb.Append($"{x.Id}\t{x.Adress}\t\t{x.ServerStatus.TimeOnServerFormatted()}\t{x.ServerStatus.TimeOfConnection.ToUniversalTime()}\n");
             });
+            AddTitle("Anonymous users");
+            sb.Append("\nadress\t\t\tTimeSpendOn\tTimeOfJoin\n");
+            Server.AnonymousUsers.ForEach(x =>
+            {
+                sb.Append($"{x.Adress}\t\t{x.TimeOnServerFormatted()}\t{x.TimeOfConnection.ToUniversalTime()}\n");
+            });
 
             return sb.ToString();
         }

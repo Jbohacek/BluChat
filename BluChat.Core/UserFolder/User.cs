@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 using BluChat.Core;
 using BluChat.Core.Data;
 using BluChat.Core.Data.Interfaces;
@@ -21,10 +22,10 @@ namespace BluChat.Core.UserFolder
         [DefaultValue("Default")]public string ProfilePicPath { get; set; } = "Default";
         
         public List<Chat> Chats { get; set; } = new List<Chat>();
-        public List<Message> Messages { get; set; } = new List<Message>();
+        [XmlIgnore]public List<Message> Messages { get; set; } = new List<Message>();
 
-        [NotMapped]public UserServerStatus? ServerStatus { get; set; }
-        [NotMapped]public IpPort? Adress => ServerStatus?.Adress;
+        [XmlIgnore][NotMapped]public UserServerStatus? ServerStatus { get; set; }
+        [XmlIgnore][NotMapped]public IpPort? Adress => ServerStatus?.Adress;
         
 
 
