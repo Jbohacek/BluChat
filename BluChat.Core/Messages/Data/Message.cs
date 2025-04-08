@@ -17,5 +17,10 @@ namespace BluChat.Core.Messages.Data
         public Chat ParentChat { get; set; } = null!;
         public string UnformatedMessage { get; set; } = null!;
         public User Sender { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return Sender.UserName + ": " +  UnformatedMessage;
+        }
     }
 }

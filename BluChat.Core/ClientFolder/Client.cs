@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace BluChat.Core.ClientFolder
         public SimpleTcpClientEvents TcpEvents => _client.Events;
 
         public SenderUser Sender;
+        public bool HasUser => Sender.User != null;
 
         public bool IsConnected => _client.IsConnected;
         public IpPort Adress { get; set; }

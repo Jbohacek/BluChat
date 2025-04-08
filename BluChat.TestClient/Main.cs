@@ -7,6 +7,7 @@ using BluChat.Core.Messages.MessageTypes.GetChats;
 using BluChat.Core.ClientFolder;
 using BluChat.Core.ClientFolder.EvenHandlers;
 using System;
+using BluChat.Core.Messages.Data;
 
 
 namespace BluChat.TestClient
@@ -33,7 +34,13 @@ namespace BluChat.TestClient
             client = new Client(txt_IpAdress.Text, Convert.ToInt32(txt_port.Text));
             client.TcpEvents.DataReceived += DataReceived;
             client.Events.UserVerified += UserVerified;
+            client.Events.GetChatMessages += messagesChanged;
             client.Connect();
+
+            if (client.IsConnected)
+            {
+                gr_Authentication.Visible = true;
+            }
         }
 
 
@@ -63,10 +70,19 @@ namespace BluChat.TestClient
             {
                 txt_output.Text =
                     $"{e.user.Id}\n{e.user.UserName}\n{e.user.ProfilePicPath}\nChat Count: {e.user.Chats.Count}";
+                gr_chats_messages.Visible = true;
+
+                box_messages.Items.Clear();
+                foreach (var chat in e.user.Chats)
+                {
+                    box_chats.Items.Add(chat);
+                }
             });
             InvokeRequiredTask(action);
-
         }
+
+        
+
 
         private void InvokeRequiredTask(Action action)
         {
@@ -118,6 +134,41 @@ namespace BluChat.TestClient
             client.Manager.SendAuthentication(txt_Username.Text, txt_Password.Text);
         }
 
-     
+        private Chat? _selectedChat = null;
+        private void box_chats_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            if (box_chats.SelectedItem is not Chat)
+                return;
+
+            Chat? selectedChat = box_chats.SelectedItem as Chat;
+            if(selectedChat == null)
+                return;
+
+            _selectedChat = selectedChat;
+
+            client.Manager.GetChatMessages(selectedChat);
+
+            Debug.WriteLine(sender);
+        }
+
+        private void messagesChanged(object? sender, GetChatMessagesEventHandler e)
+        {
+
+            Action action = new Action(() =>
+            {
+                if (_selectedChat == null)
+                    return;
+
+                box_messages.Items.Clear();
+                foreach (var message in _selectedChat.Messages)
+                {
+                    box_messages.Items.Add(message);
+                }
+            });
+            InvokeRequiredTask(action);
+
+
+        }
     }
 }

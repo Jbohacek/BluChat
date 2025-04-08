@@ -23,7 +23,7 @@ namespace BluChat.Core.Messages.Data
 
         public DateTime CreationOfCreation { get; set; } = DateTime.Now;
 
-        [XmlIgnore] public DateTime LastTimeEdited { get; set; } = DateTime.Now;
+        public DateTime LastTimeEdited { get; set; } = DateTime.Now;
 
 
         public Chat()
@@ -59,5 +59,10 @@ namespace BluChat.Core.Messages.Data
             return true;
         }
 
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

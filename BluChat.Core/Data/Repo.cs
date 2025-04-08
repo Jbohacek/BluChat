@@ -25,9 +25,16 @@ namespace BluChat.Core.Data
 
         public IEnumerable<T> GetWhere(Expression<Func<T, bool>> filterExpression) => _dbSet.Where(filterExpression).ToList();
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(params string[] includes)
         {
-            return _dbSet.ToList();
+            IQueryable<T> query = _dbSet;
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return query.ToList();
         }
 
         public virtual void Add(T item)

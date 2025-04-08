@@ -15,7 +15,7 @@ namespace BluChat.Core.UserFolder
     [Table("tbUsers")]
     public class User : ITable
     {
-        [Key]public Guid Id { get; set; } = Guid.NewGuid();
+        [Key]public Guid Id { get; set; }
 
         [MaxLength(30)] public string UserName { get; set; } = null!;
         public string HashPassword { get; set; } = null!;

@@ -15,6 +15,7 @@ namespace BluChat.Core.Messages.MessageTypes.Authenticate
 
         public override void MessangeHandler(MessageClientManager clientManager)
         {
+            clientManager.Client.Sender.User = authenticatedUser;
             clientManager.Client.Events.OnUserVerificion(this);
         }
     }

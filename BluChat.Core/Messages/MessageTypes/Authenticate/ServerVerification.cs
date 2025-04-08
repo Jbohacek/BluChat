@@ -18,7 +18,7 @@ namespace BluChat.Core.Messages.MessageTypes.Authenticate
 
         public override void MessangeHandler(MessageServerManager serverManager)
         {
-            User? possibleUser = serverManager.Database.Users.GetAll().FirstOrDefault(x => x.UserName == UserName);
+            User? possibleUser = serverManager.Database.Users.GetAll("Chats").FirstOrDefault(x => x.UserName == UserName);
 
             //Check if user exists
             if (possibleUser == null)

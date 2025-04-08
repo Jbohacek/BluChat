@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BluChat.Core.ClientFolder.EvenHandlers;
 using BluChat.Core.Messages.MessageTypes.Authenticate;
+using BluChat.Core.Messages.MessageTypes.GetChatMessages;
 
 namespace BluChat.Core.ClientFolder
 {
@@ -19,6 +20,14 @@ namespace BluChat.Core.ClientFolder
         {
             UserVerifiedEventHandler handler = new UserVerifiedEventHandler(message.authenticatedUser);
             UserVerified.Invoke(_client, handler);
+        }
+
+        public event EventHandler<GetChatMessagesEventHandler> GetChatMessages; 
+
+        public void OnGetChatMessages(ClientMultipleStringMessages message)
+        {
+            GetChatMessagesEventHandler handler = new GetChatMessagesEventHandler(){Messages = message.Content};
+            GetChatMessages.Invoke(_client, handler);
         }
     }
 }

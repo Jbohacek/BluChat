@@ -12,9 +12,8 @@ using BluChat.Core.UserFolder;
 
 namespace BluChat.Core.Messages.MessageTypes.GetChatMessages
 {
-    public class RequestToGetChatMessages : MessageBaseServer
+    public class ServerRequestToGetChatMessages : MessageBaseServer
     {
-        public SenderUser sender { get; set; }
         public Chat chat { get; set; }
 
         public override void MessangeHandler(MessageServerManager serverManager)
@@ -22,14 +21,15 @@ namespace BluChat.Core.Messages.MessageTypes.GetChatMessages
             var database = serverManager.Database;
             var serializer = serverManager.serializer;
             var logger = serverManager.Logger;
-            var user = database.Users.GetFirstOrDefault(x => x.Id == sender.Id);
+            var user = database.Users.GetFirstOrDefault(x => x.Id == Sender.User.Id);
 
-            List<Message> messages = database.Messages.GetWhere(x => x.ParentChat.Id == chat.Id).ToList();
+            List<Message> messages = database.Messages.GetAll("Sender").Where(x => x.ParentChat.Id == chat.Id).ToList();
 
-            ReturnMultipleStringMessages returnMultiple = new ReturnMultipleStringMessages();
-            returnMultiple.Content = messages.Select(x => x.UnformatedMessage).ToList();
+            ClientMultipleStringMessages clientMultiple = new ClientMultipleStringMessages();
+            clientMultiple.Content = messages.ToList();
+            clientMultiple.idChat = chat.Id;
 
-            string sendMultipleSeriazed = serializer.SerializeMessageToString(returnMultiple);
+            string sendMultipleSeriazed = serializer.SerializeMessageToString(clientMultiple);
 
             if (user.ServerStatus == null)
             {
@@ -44,7 +44,7 @@ namespace BluChat.Core.Messages.MessageTypes.GetChatMessages
             }
 
 
-            serverManager.Server.Send(sender.IpPort, sendMultipleSeriazed);
+            serverManager.Server.Send(Sender.IpPort, sendMultipleSeriazed);
 
         }
 
