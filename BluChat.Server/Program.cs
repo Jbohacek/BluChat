@@ -106,7 +106,7 @@ namespace BluChat.ServerConsole
                         Console.WriteLine("List\t\t\t\t - shows every client connected");
                         Console.WriteLine("send [Ip]:[Port] [Message]\t - sends [Message] to client with [Ip:Port]");
                         Console.WriteLine("clear\t\t\t\t - clears the console");
-                        Console.WriteLine("help\t\t\t\t - helps");
+                        Console.WriteLine("help\t\t\t - helps");
                         Console.WriteLine("<--- End --->");
 
                         break;
