@@ -67,6 +67,11 @@ namespace BluChat.Core.Logger
             {
                 return new Log("User authenticated " + user.Id, $"{ipPort}");
             }
+
+            public static Log AlreadyConnected(User user, string ipPort)
+            {
+                return new Log("User already connected " + user.Id + $" ({user.UserName})", $"{ipPort}");
+            }
         }
     }
 }

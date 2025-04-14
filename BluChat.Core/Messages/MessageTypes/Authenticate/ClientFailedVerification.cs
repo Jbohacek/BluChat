@@ -8,18 +8,14 @@ using BluChat.Core.Messages.Data;
 
 namespace BluChat.Core.Messages.MessageTypes.Authenticate
 {
-    public class ClientFailedVerification : MessageBaseServer
+    public class ClientFailedVerification : MessageBaseClient
     {
         public string Reason { get; set; }
         
-        public override void MessangeHandler(MessageServerManager serverManager)
+        public override void MessangeHandler(MessageClientManager clientManager)
         {
-            throw new NotImplementedException();
+            clientManager.Client.Events.OnUserFailedVerification(this);
         }
 
-        public override Message Convert()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -34,6 +34,7 @@ namespace BluChat.TestClient
             client = new Client(txt_IpAdress.Text, Convert.ToInt32(txt_port.Text));
             client.TcpEvents.DataReceived += DataReceived;
             client.Events.UserVerified += UserVerified;
+            client.Events.UserFailedVerification += UserFailedVerification;
             client.Events.GetChatMessages += messagesChanged;
             client.Connect();
 
@@ -72,6 +73,7 @@ namespace BluChat.TestClient
                     $"{e.user.Id}\n{e.user.UserName}\n{e.user.ProfilePicPath}\nChat Count: {e.user.Chats.Count}";
                 gr_chats_messages.Visible = true;
 
+                box_chats.Items.Clear();
                 box_messages.Items.Clear();
                 foreach (var chat in e.user.Chats)
                 {
@@ -81,6 +83,14 @@ namespace BluChat.TestClient
             InvokeRequiredTask(action);
         }
 
+        private void UserFailedVerification(object sender, UserFailedVerificationHandler e)
+        {
+            var action = new Action(() =>
+            {
+                txt_output.Text = e.Reason;
+            });
+            InvokeRequiredTask(action);
+        }
         
 
 

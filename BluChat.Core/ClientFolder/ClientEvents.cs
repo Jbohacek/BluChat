@@ -29,5 +29,14 @@ namespace BluChat.Core.ClientFolder
             GetChatMessagesEventHandler handler = new GetChatMessagesEventHandler(){Messages = message.Content};
             GetChatMessages.Invoke(_client, handler);
         }
+
+        public event EventHandler<UserFailedVerificationHandler> UserFailedVerification;
+
+        public void OnUserFailedVerification(ClientFailedVerification message)
+        {
+            UserFailedVerificationHandler handler = new(message.Reason);
+            UserFailedVerification.Invoke(_client, handler);
+
+        }
     }
 }

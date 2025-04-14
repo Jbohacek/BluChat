@@ -23,20 +23,32 @@ namespace BluChat.Core.Messages.MessageTypes.Authenticate
             //Check if user exists
             if (possibleUser == null)
             {
-                serverManager.Logger.Add(LogFactory.Authentication.UserNotFoundByUsername(UserName,Sender.IpPort));
-                var failed = GenerateFailed("User not found");
-                var serilezed = serverManager.serializer.SerializeMessageToString(failed);
-                serverManager.Server.Send(base.Sender.IpPort, serilezed);
+                //serverManager.Logger.Add(LogFactory.Authentication.UserNotFoundByUsername(UserName,Sender.IpPort));
+                //var failed = GenerateFailed("User not found");
+                //var serilezed = serverManager.serializer.SerializeMessageToString(failed);
+                //serverManager.Server.Send(base.Sender.IpPort, serilezed);
+                Log log = LogFactory.Authentication.UserNotFoundByUsername(UserName, Sender.IpPort);
+                SendFailed(serverManager, log, "User not Found");
                 return;
             }
 
             //Check if password matches
             if (!PasswordManager.VerifyPassword(Password, possibleUser.HashPassword))
             {
-                serverManager.Logger.Add(LogFactory.Authentication.WrongPassword(UserName,Sender.IpPort));
-                var failed = GenerateFailed("Wrong password");
-                var serilezed = serverManager.serializer.SerializeMessageToString(failed);
-                serverManager.Server.Send(base.Sender.IpPort, serilezed);
+                //serverManager.Logger.Add(LogFactory.Authentication.WrongPassword(UserName,Sender.IpPort));
+                //var failed = GenerateFailed("Wrong password");
+                //var serilezed = serverManager.serializer.SerializeMessageToString(failed);
+                //serverManager.Server.Send(base.Sender.IpPort, serilezed);
+                Log log = LogFactory.Authentication.WrongPassword(UserName, Sender.IpPort);
+                SendFailed(serverManager, log, "Wrong password");
+                return;
+            }
+
+            //Check if user is already connected
+            if(serverManager.Parent.ConnectedUsers.Any(x => x.Id == possibleUser.Id))
+            {
+                Log log = LogFactory.Authentication.AlreadyConnected(possibleUser, Sender.IpPort);
+                SendFailed(serverManager, log, "User already connected");
                 return;
             }
 
@@ -59,6 +71,16 @@ namespace BluChat.Core.Messages.MessageTypes.Authenticate
             serverManager.Logger.Add(LogFactory.UserConnected(possibleUser));
         }
 
+        private void SendFailed(MessageServerManager serverManager, Log why, string reason)
+        {
+            serverManager.Logger.Add(why);
+            var failed = GenerateFailed(reason);
+            var serilezed = serverManager.serializer.SerializeMessageToString(failed);
+            serverManager.Server.Send(base.Sender.IpPort, serilezed);
+        }
+
+
+
         private ClientSuccessVerification GenerateSuccess(User succesUser)
         {
             return new ClientSuccessVerification()
@@ -73,7 +95,6 @@ namespace BluChat.Core.Messages.MessageTypes.Authenticate
             return new ClientFailedVerification()
             {
                 Reason = reason,
-                Sender = base.Sender,
                 SendTime = DateTime.Now
             };
         }
