@@ -22,14 +22,14 @@ namespace BluChat.Core.ServerFolder
         {
             sb.Clear();
             AddTitle("User List");
-            sb.Append("Guid\t\t\t\t\tadress\t\t\tTimeSpendOn\tTimeOfJoin\n");
+            sb.Append("Guid\t\t\t\t\tAdress\t\t\tTimeSpendOn\tTimeOfJoin\n");
 
             Server.ConnectedUsers.ForEach(x =>
             {
                 sb.Append($"{x.Id}\t{x.Adress}\t\t{x.ServerStatus.TimeOnServerFormatted()}\t{x.ServerStatus.TimeOfConnection.ToUniversalTime()}\n");
             });
             AddTitle("Anonymous users");
-            sb.Append("\nadress\t\t\tTimeSpendOn\tTimeOfJoin\n");
+            sb.Append("Adress\t\t\tTimeSpendOn\tTimeOfJoin\n");
             Server.AnonymousUsers.ForEach(x =>
             {
                 sb.Append($"{x.Adress}\t\t{x.TimeOnServerFormatted()}\t{x.TimeOfConnection.ToUniversalTime()}\n");

@@ -83,14 +83,22 @@ namespace BluChat.Core.ServerFolder
         private void OnUserDisconect(object sender, ConnectionEventArgs e)
         {
             User? user = ConnectedUsers.SingleOrDefault(x => x.Adress.ToString() == e.IpPort);
-            if (user == null)
+            if (user != null)
             {
-                Logger.Add(LogFactory.UserNotFound(e.IpPort));
+                ConnectedUsers.Remove(user);
+                Logger.Add(LogFactory.UserDisconnected(user));
                 return;
             }
 
-            ConnectedUsers.Remove(user);
-            Logger.Add(LogFactory.UserDisconnected(user));
+            UserServerStatus? anonymous = AnonymousUsers.SingleOrDefault(x => x.Adress.ToString() == e.IpPort);
+            if(anonymous != null)
+            {
+                AnonymousUsers.Remove(anonymous);
+                Logger.Add(LogFactory.AnonymousUserDisconnected(anonymous.Adress));
+                return;
+            }
+
+            Logger.Add(LogFactory.UserNotFound(e.IpPort));
         }
 
         public void OnLogAdded(object sender, LogEventHandler e)
@@ -100,6 +108,10 @@ namespace BluChat.Core.ServerFolder
             Console.ResetColor();
         }
 
+        private void OnServerClose(object sender, EventArgs e)
+        {
+            Logger.Add(LogFactory.ServerStopping());
+        }
 
         public class ServerBuilder()
         {
@@ -139,6 +151,11 @@ namespace BluChat.Core.ServerFolder
                 return this;
             }
 
+            public ServerBuilder SetOnClosingEvent()
+            {
+                AppDomain.CurrentDomain.ProcessExit += _server.OnServerClose!;
+                return this;
+            }
 
 
             public Server Build()

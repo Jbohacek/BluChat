@@ -24,6 +24,10 @@ namespace BluChat.Core.Logger
         {
             return new Log("Anonymous user have connected",adress.ToString() , Enums.Level.Informal);
         }
+        public static Log AnonymousUserDisconnected(IpPort adress)
+        {
+            return new Log("Anonymous user have disconected", adress.ToString(), Enums.Level.Informal);
+        }
 
         public static Log UserDisconnected(User user)
         {
@@ -39,6 +43,11 @@ namespace BluChat.Core.Logger
         public static Log UserNotFoundToSend(User user)
         {
             return new Log("User was not found connected to server to send message", user.UserName+" - "+user.Id , Enums.Level.ServerError);
+        }
+
+        public static Log ServerStopping()
+        {
+            return new Log("Server stopped gracefully",DateTime.Now.ToLocalTime().ToString(), Enums.Level.ServerError );
         }
 
         public static Log ContextChange(EntityEntry entryChanged)

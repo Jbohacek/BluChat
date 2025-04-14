@@ -24,6 +24,7 @@ namespace BluChat.ServerConsole
             serverBuild.SetLogger(new Logger());
             serverBuild.SetDatabase(new SqlLiteContext("BluChat"));
             serverBuild.SetAdminUserPassword("123456");
+            serverBuild.SetOnClosingEvent();
 
             Server server = serverBuild.Build();
             server.Start();
