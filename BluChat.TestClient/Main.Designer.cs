@@ -50,8 +50,8 @@
             label3 = new Label();
             box_chats = new ListBox();
             gr_chats_messages = new GroupBox();
-            button1 = new Button();
-            textBox1 = new TextBox();
+            btn_send = new Button();
+            txt_userInputMessage = new TextBox();
             box_messages = new ListBox();
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgw_log).BeginInit();
@@ -272,8 +272,8 @@
             // 
             // gr_chats_messages
             // 
-            gr_chats_messages.Controls.Add(button1);
-            gr_chats_messages.Controls.Add(textBox1);
+            gr_chats_messages.Controls.Add(btn_send);
+            gr_chats_messages.Controls.Add(txt_userInputMessage);
             gr_chats_messages.Controls.Add(box_messages);
             gr_chats_messages.Controls.Add(box_chats);
             gr_chats_messages.Location = new Point(12, 447);
@@ -284,25 +284,26 @@
             gr_chats_messages.Text = "Chats";
             gr_chats_messages.Visible = false;
             // 
-            // button1
+            // btn_send
             // 
-            button1.Enabled = false;
-            button1.Location = new Point(400, 284);
-            button1.Name = "button1";
-            button1.Size = new Size(88, 54);
-            button1.TabIndex = 14;
-            button1.Text = "Send";
-            button1.UseVisualStyleBackColor = true;
+            btn_send.Enabled = false;
+            btn_send.Location = new Point(400, 284);
+            btn_send.Name = "btn_send";
+            btn_send.Size = new Size(88, 54);
+            btn_send.TabIndex = 14;
+            btn_send.Text = "Send";
+            btn_send.UseVisualStyleBackColor = true;
+            btn_send.Click += btn_send_Click;
             // 
-            // textBox1
+            // txt_userInputMessage
             // 
-            textBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            textBox1.Location = new Point(169, 284);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Message";
-            textBox1.Size = new Size(225, 53);
-            textBox1.TabIndex = 13;
+            txt_userInputMessage.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            txt_userInputMessage.Location = new Point(169, 284);
+            txt_userInputMessage.Multiline = true;
+            txt_userInputMessage.Name = "txt_userInputMessage";
+            txt_userInputMessage.PlaceholderText = "Message";
+            txt_userInputMessage.Size = new Size(225, 53);
+            txt_userInputMessage.TabIndex = 13;
             // 
             // box_messages
             // 
@@ -372,8 +373,8 @@
         private GroupBox gr_chats_messages;
         private DataGridViewTextBoxColumn context;
         private DataGridViewTextBoxColumn Time;
-        private Button button1;
-        private TextBox textBox1;
+        private Button btn_send;
+        private TextBox txt_userInputMessage;
         private ListBox box_messages;
         private Label label6;
     }

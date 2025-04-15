@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BluChat.Core.Messages.MessageTypes
 {
-    class ClientBroadcastMessage : MessageBaseClient
+    public class ClientUniversalBroadcastMessage : MessageBaseClient
     {
         public override void MessangeHandler(MessageClientManager clientManager)
         {

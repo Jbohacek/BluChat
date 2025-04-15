@@ -8,6 +8,7 @@ using BluChat.Core.ClientFolder;
 using BluChat.Core.ClientFolder.EvenHandlers;
 using System;
 using BluChat.Core.Messages.Data;
+using System.Windows.Forms;
 
 
 namespace BluChat.TestClient
@@ -53,6 +54,7 @@ namespace BluChat.TestClient
             client.Events.UserVerified += UserVerified;
             client.Events.UserFailedVerification += UserFailedVerification;
             client.Events.GetChatMessages += messagesChanged;
+            client.Events.MessageRecieved += MessageRecieved!;
         }
 
 
@@ -103,7 +105,7 @@ namespace BluChat.TestClient
             });
             InvokeRequiredTask(action);
         }
-        
+
 
 
         private void InvokeRequiredTask(Action action)
@@ -164,7 +166,7 @@ namespace BluChat.TestClient
                 return;
 
             Chat? selectedChat = box_chats.SelectedItem as Chat;
-            if(selectedChat == null)
+            if (selectedChat == null)
                 return;
 
             _selectedChat = selectedChat;
@@ -176,7 +178,6 @@ namespace BluChat.TestClient
 
         private void messagesChanged(object? sender, GetChatMessagesEventHandler e)
         {
-
             Action action = new Action(() =>
             {
                 if (_selectedChat == null)
@@ -187,10 +188,34 @@ namespace BluChat.TestClient
                 {
                     box_messages.Items.Add(message);
                 }
+                btn_send.Enabled = true;
             });
             InvokeRequiredTask(action);
+        }
 
+        private void btn_send_Click(object sender, EventArgs e)
+        {
+            if (_selectedChat == null)
+            {
+                btn_send.Enabled = false;
+                return;
+            }
 
+            client.Manager.SendMessage(txt_userInputMessage.Text,_selectedChat);
+        }
+
+        private void MessageRecieved(object sender, MessageRecievedArgs e)
+        {
+            Action action = new Action(() =>
+            {
+                if (_selectedChat == null)
+                {
+                    return;
+                }
+                _selectedChat.Messages.Add(e.Message);
+                box_messages.Items.Add(e.Message.ToString());
+            });
+            InvokeRequiredTask(action);
         }
     }
 }

@@ -9,8 +9,10 @@ using BluChat.Core.Messages.Abstracts;
 using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes.Authenticate;
 using BluChat.Core.Messages.MessageTypes.GetChatMessages;
+using BluChat.Core.Messages.MessageTypes.SendMessage;
 using BluChat.Core.Messages.SenderReciever;
 using BluChat.Core.UserFolder;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using SuperSimpleTcp;
 
 namespace BluChat.Core.Messages
@@ -59,6 +61,33 @@ namespace BluChat.Core.Messages
             messageBaseClient.MessangeHandler(this);
         }
 
+        public void SendMessage(string unformatedMessage, Chat chat)
+        {
+            if (!Client.HasUser)
+            {
+                throw new Exception("No user");
+            }
+
+            Message message = new Message()
+            {
+                Id = Guid.NewGuid(),
+                ParentChat = chat,
+                Sender = Client.Sender.User,
+                UnformatedMessage = unformatedMessage
+            };
+
+            ServerRequestSendMessage messageRequest = new ServerRequestSendMessage();
+            messageRequest.Message = message;
+            messageRequest.Sender = Client.Sender;
+            messageRequest.ParentChat = chat;
+            messageRequest.SendTime = DateTime.Now;
+
+            string serilizated = Serializer.SerializeMessageToString(messageRequest);
+            SimpleTcp.Send(serilizated);
+
+
+
+        }
 
     }
 }
