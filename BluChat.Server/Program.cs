@@ -29,6 +29,8 @@ namespace BluChat.ServerConsole
             Server server = serverBuild.Build();
             server.Start();
 
+
+            // Vytvoření testovacích prostředků
             if (!server.Database.Chats.GetAll().Any(x => x.Name == "TestChat"))
             {
                 Chat chat = new Chat("TestChat");
@@ -36,22 +38,6 @@ namespace BluChat.ServerConsole
                 server.Database.Chats.Add(chat);
                 server.Database.Save();
             }
-
-
-
-            //MessageSerializer serializer = new MessageSerializer();
-            //StringMessage message = MessageFactory.GetTestMessage();
-            //message.Sender = new SenderUser(server.Database.Users.GetAdmin());
-            //message.ParentChat = server.Database.Chats.GetFirstOrDefault(x => x.Name == "TestChat");
-            //message.SendTime = DateTime.Now;
-
-            //string converted = serializer.SerializeMessageToString(message);
-
-            //server.MessageServerManager.RecieveMessage(converted);
-
-
-
-
 
 
             Task.Run(() => { HandleInputs(server); });

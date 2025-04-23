@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BluChat.Core.ClientFolder.EvenHandlers;
 using BluChat.Core.Messages.MessageTypes.Authenticate;
 using BluChat.Core.Messages.MessageTypes.GetChatMessages;
+using BluChat.Core.Messages.MessageTypes.GetChats;
 using BluChat.Core.Messages.MessageTypes.SendMessage;
 using BluChat.Core.Messages.MessageTypes.SendMessage.Confirmation;
 
@@ -67,6 +68,15 @@ namespace BluChat.Core.ClientFolder
             args.Message = message.Message;
             MessageRecieved.Invoke(_client, args);
         }
+
+        public event EventHandler<ChatRecivedArgs> ChatsRecieved;
+        public void OnChatsRecieved(ClientReturnChats message)
+        {
+            ChatRecivedArgs args = new ChatRecivedArgs();
+            args.Chats = message.Chats;
+            ChatsRecieved.Invoke(_client,args);
+        }
+
 
     }
 }

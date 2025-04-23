@@ -18,6 +18,7 @@ namespace BluChat.TestClient
         public Main()
         {
             InitializeComponent();
+            dgw_log.AutoGenerateColumns = false;
         }
 
         private Client client;
@@ -55,6 +56,7 @@ namespace BluChat.TestClient
             client.Events.UserFailedVerification += UserFailedVerification;
             client.Events.GetChatMessages += messagesChanged;
             client.Events.MessageRecieved += MessageRecieved!;
+            client.Events.ChatsRecieved += ReloadChats!;
         }
 
 
@@ -130,7 +132,7 @@ namespace BluChat.TestClient
         {
             public string context { get; set; }
             public DateTime time { get; set; }
-
+ 
             public Log(string message)
             {
                 context = message;
@@ -201,7 +203,7 @@ namespace BluChat.TestClient
                 return;
             }
 
-            client.Manager.SendMessage(txt_userInputMessage.Text,_selectedChat);
+            client.Manager.SendMessage(txt_userInputMessage.Text, _selectedChat);
         }
 
         private void MessageRecieved(object sender, MessageRecievedArgs e)
@@ -214,6 +216,41 @@ namespace BluChat.TestClient
                 }
                 _selectedChat.Messages.Add(e.Message);
                 box_messages.Items.Add(e.Message.ToString());
+            });
+            InvokeRequiredTask(action);
+        }
+
+        private void dgw_log_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgw_log.SelectedCells.Count == 1)
+            {
+                string message = dgw_log.SelectedCells[0].Value.ToString()!;
+
+                LogShow logShow = new LogShow(message);
+                logShow.ShowDialog();
+            }
+        }
+
+        private void btn_reload_Click(object sender, EventArgs e)
+        {
+            client.Manager.ReloadChats();
+            btn_reload.Enabled = false;
+        }
+
+        private void ReloadChats(object sender, ChatRecivedArgs e)
+        {
+            Action action = new Action(() =>
+            {
+                box_chats.Items.Clear();
+                box_messages.Items.Clear();
+                foreach (var chat in e.Chats)
+                {
+                    box_chats.Items.Add(chat);
+                }
+
+                btn_reload.Enabled = true;
+
+                _selectedChat = null;
             });
             InvokeRequiredTask(action);
         }

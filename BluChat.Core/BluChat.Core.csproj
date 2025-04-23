@@ -22,4 +22,9 @@
     <PackageReference Include="SuperSimpleTcp" Version="3.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Messages\MessageTypes\AddChat\" />
+    <Folder Include="Messages\MessageTypes\AddUser\" />
+  </ItemGroup>
+
 </Project>

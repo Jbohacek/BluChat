@@ -9,6 +9,7 @@ using BluChat.Core.Messages.Abstracts;
 using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes.Authenticate;
 using BluChat.Core.Messages.MessageTypes.GetChatMessages;
+using BluChat.Core.Messages.MessageTypes.GetChats;
 using BluChat.Core.Messages.MessageTypes.SendMessage;
 using BluChat.Core.Messages.SenderReciever;
 using BluChat.Core.UserFolder;
@@ -89,5 +90,21 @@ namespace BluChat.Core.Messages
 
         }
 
+        public void ReloadChats()
+        {
+            if (!client.HasUser)
+                return;
+            if (client.Sender.User == null)
+                return;
+            ServerRequestChats request = new(client.Sender.User.Id);
+            request.Sender = new SenderUser();
+            string serilzed = client.Manager.Serializer.SerializeMessageToString(request);
+            client.Manager.SimpleTcp.Send(serilzed);
+
+            Client.Events.ChatsRecieved += ((sender, args) =>
+            {
+                Client.Sender.User.Chats = args.Chats;
+            });
+        }
     }
 }

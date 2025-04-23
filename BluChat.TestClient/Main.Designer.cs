@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             txt_IpAdress = new TextBox();
             label1 = new Label();
             txt_port = new TextBox();
             label2 = new Label();
             btn_start = new Button();
             dgw_log = new DataGridView();
-            context = new DataGridViewTextBoxColumn();
-            Time = new DataGridViewTextBoxColumn();
             btn_RequestChats = new Button();
             btn_dissconnect = new Button();
             gr_Connection = new GroupBox();
@@ -50,10 +48,13 @@
             label3 = new Label();
             box_chats = new ListBox();
             gr_chats_messages = new GroupBox();
+            btn_reload = new Button();
             btn_send = new Button();
             txt_userInputMessage = new TextBox();
             box_messages = new ListBox();
             label6 = new Label();
+            context = new DataGridViewTextBoxColumn();
+            Time = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgw_log).BeginInit();
             gr_Connection.SuspendLayout();
             gr_Authentication.SuspendLayout();
@@ -120,29 +121,12 @@
             dgw_log.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgw_log.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgw_log.Columns.AddRange(new DataGridViewColumn[] { context, Time });
-            dgw_log.Location = new Point(512, 52);
+            dgw_log.Location = new Point(991, 52);
             dgw_log.Name = "dgw_log";
             dgw_log.ReadOnly = true;
-            dgw_log.Size = new Size(969, 818);
+            dgw_log.Size = new Size(490, 818);
             dgw_log.TabIndex = 5;
-            // 
-            // context
-            // 
-            context.DataPropertyName = "context";
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            context.DefaultCellStyle = dataGridViewCellStyle2;
-            context.FillWeight = 6F;
-            context.HeaderText = "Message";
-            context.Name = "context";
-            context.ReadOnly = true;
-            // 
-            // Time
-            // 
-            Time.DataPropertyName = "Time";
-            Time.FillWeight = 3F;
-            Time.HeaderText = "Time of send";
-            Time.Name = "Time";
-            Time.ReadOnly = true;
+            dgw_log.CellDoubleClick += dgw_log_CellDoubleClick;
             // 
             // btn_RequestChats
             // 
@@ -266,23 +250,34 @@
             box_chats.ItemHeight = 30;
             box_chats.Location = new Point(8, 34);
             box_chats.Name = "box_chats";
-            box_chats.Size = new Size(155, 304);
+            box_chats.Size = new Size(155, 244);
             box_chats.TabIndex = 10;
             box_chats.SelectedValueChanged += box_chats_SelectedValueChanged;
             // 
             // gr_chats_messages
             // 
+            gr_chats_messages.Controls.Add(btn_reload);
             gr_chats_messages.Controls.Add(btn_send);
             gr_chats_messages.Controls.Add(txt_userInputMessage);
             gr_chats_messages.Controls.Add(box_messages);
             gr_chats_messages.Controls.Add(box_chats);
             gr_chats_messages.Location = new Point(12, 447);
             gr_chats_messages.Name = "gr_chats_messages";
-            gr_chats_messages.Size = new Size(494, 343);
+            gr_chats_messages.Size = new Size(973, 343);
             gr_chats_messages.TabIndex = 11;
             gr_chats_messages.TabStop = false;
             gr_chats_messages.Text = "Chats";
             gr_chats_messages.Visible = false;
+            // 
+            // btn_reload
+            // 
+            btn_reload.Location = new Point(8, 300);
+            btn_reload.Name = "btn_reload";
+            btn_reload.Size = new Size(155, 38);
+            btn_reload.TabIndex = 13;
+            btn_reload.Text = "Reload";
+            btn_reload.UseVisualStyleBackColor = true;
+            btn_reload.Click += btn_reload_Click;
             // 
             // btn_send
             // 
@@ -311,17 +306,35 @@
             box_messages.ItemHeight = 30;
             box_messages.Location = new Point(169, 34);
             box_messages.Name = "box_messages";
-            box_messages.Size = new Size(319, 244);
+            box_messages.Size = new Size(798, 244);
             box_messages.TabIndex = 12;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(512, 12);
+            label6.Location = new Point(991, 19);
             label6.Name = "label6";
             label6.Size = new Size(152, 30);
             label6.TabIndex = 12;
             label6.Text = "Debug window";
+            // 
+            // context
+            // 
+            context.DataPropertyName = "context";
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            context.DefaultCellStyle = dataGridViewCellStyle1;
+            context.FillWeight = 6F;
+            context.HeaderText = "Message";
+            context.Name = "context";
+            context.ReadOnly = true;
+            // 
+            // Time
+            // 
+            Time.DataPropertyName = "Time";
+            Time.FillWeight = 3F;
+            Time.HeaderText = "Time of send";
+            Time.Name = "Time";
+            Time.ReadOnly = true;
             // 
             // Main
             // 
@@ -371,11 +384,12 @@
         private TextBox txt_output;
         private ListBox box_chats;
         private GroupBox gr_chats_messages;
-        private DataGridViewTextBoxColumn context;
-        private DataGridViewTextBoxColumn Time;
         private Button btn_send;
         private TextBox txt_userInputMessage;
         private ListBox box_messages;
         private Label label6;
+        private Button btn_reload;
+        private DataGridViewTextBoxColumn context;
+        private DataGridViewTextBoxColumn Time;
     }
 }
