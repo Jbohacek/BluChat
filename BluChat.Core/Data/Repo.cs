@@ -21,7 +21,10 @@ namespace BluChat.Core.Data
             _dbSet = context.Set<T>();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filterExpression) => _dbSet.First(filterExpression);
+        public T GetFirst(Expression<Func<T, bool>> filterExpression) => _dbSet.First(filterExpression);
+
+        public T? GetFirstOrDefault(Expression<Func<T, bool>> filterExpression) =>
+            _dbSet.FirstOrDefault(filterExpression);
 
         public IEnumerable<T> GetWhere(Expression<Func<T, bool>> filterExpression) => _dbSet.Where(filterExpression).ToList();
 
@@ -51,7 +54,7 @@ namespace BluChat.Core.Data
             Context.Remove(item);
         }
 
-        public void Update(T item)
+        public virtual void Update(T item)
         {
             Context.Update(item);
         }

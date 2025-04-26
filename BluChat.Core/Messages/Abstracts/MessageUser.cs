@@ -18,7 +18,7 @@ namespace BluChat.Core.Messages.Abstracts
 
         public void FindUser(MessageServerManager serverManager)
         {
-            User = serverManager.Database.Users.GetFirstOrDefault(x => x.Id == User.Id);
+            User = serverManager.Database.Users.GetFirst(x => x.Id == User.Id);
         }
     }
 }

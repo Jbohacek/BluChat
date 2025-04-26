@@ -35,7 +35,8 @@
             label2 = new Label();
             btn_start = new Button();
             dgw_log = new DataGridView();
-            btn_RequestChats = new Button();
+            context = new DataGridViewTextBoxColumn();
+            Time = new DataGridViewTextBoxColumn();
             btn_dissconnect = new Button();
             gr_Connection = new GroupBox();
             gr_Authentication = new GroupBox();
@@ -53,8 +54,6 @@
             txt_userInputMessage = new TextBox();
             box_messages = new ListBox();
             label6 = new Label();
-            context = new DataGridViewTextBoxColumn();
-            Time = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgw_log).BeginInit();
             gr_Connection.SuspendLayout();
             gr_Authentication.SuspendLayout();
@@ -128,19 +127,27 @@
             dgw_log.TabIndex = 5;
             dgw_log.CellDoubleClick += dgw_log_CellDoubleClick;
             // 
-            // btn_RequestChats
+            // context
             // 
-            btn_RequestChats.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btn_RequestChats.Location = new Point(12, 823);
-            btn_RequestChats.Name = "btn_RequestChats";
-            btn_RequestChats.Size = new Size(259, 47);
-            btn_RequestChats.TabIndex = 6;
-            btn_RequestChats.Text = "Request Chats";
-            btn_RequestChats.UseVisualStyleBackColor = true;
-            btn_RequestChats.Click += btn_RequestChats_Click;
+            context.DataPropertyName = "context";
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            context.DefaultCellStyle = dataGridViewCellStyle1;
+            context.FillWeight = 6F;
+            context.HeaderText = "Message";
+            context.Name = "context";
+            context.ReadOnly = true;
+            // 
+            // Time
+            // 
+            Time.DataPropertyName = "Time";
+            Time.FillWeight = 3F;
+            Time.HeaderText = "Time of send";
+            Time.Name = "Time";
+            Time.ReadOnly = true;
             // 
             // btn_dissconnect
             // 
+            btn_dissconnect.Enabled = false;
             btn_dissconnect.Location = new Point(137, 111);
             btn_dissconnect.Name = "btn_dissconnect";
             btn_dissconnect.Size = new Size(138, 44);
@@ -263,7 +270,7 @@
             gr_chats_messages.Controls.Add(box_chats);
             gr_chats_messages.Location = new Point(12, 447);
             gr_chats_messages.Name = "gr_chats_messages";
-            gr_chats_messages.Size = new Size(973, 343);
+            gr_chats_messages.Size = new Size(973, 347);
             gr_chats_messages.TabIndex = 11;
             gr_chats_messages.TabStop = false;
             gr_chats_messages.Text = "Chats";
@@ -271,7 +278,7 @@
             // 
             // btn_reload
             // 
-            btn_reload.Location = new Point(8, 300);
+            btn_reload.Location = new Point(8, 299);
             btn_reload.Name = "btn_reload";
             btn_reload.Size = new Size(155, 38);
             btn_reload.TabIndex = 13;
@@ -318,24 +325,6 @@
             label6.TabIndex = 12;
             label6.Text = "Debug window";
             // 
-            // context
-            // 
-            context.DataPropertyName = "context";
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            context.DefaultCellStyle = dataGridViewCellStyle1;
-            context.FillWeight = 6F;
-            context.HeaderText = "Message";
-            context.Name = "context";
-            context.ReadOnly = true;
-            // 
-            // Time
-            // 
-            Time.DataPropertyName = "Time";
-            Time.FillWeight = 3F;
-            Time.HeaderText = "Time of send";
-            Time.Name = "Time";
-            Time.ReadOnly = true;
-            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
@@ -345,7 +334,6 @@
             Controls.Add(gr_chats_messages);
             Controls.Add(gr_Authentication);
             Controls.Add(gr_Connection);
-            Controls.Add(btn_RequestChats);
             Controls.Add(dgw_log);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 238);
             Margin = new Padding(5, 6, 5, 6);
@@ -371,7 +359,6 @@
         private Label label2;
         private Button btn_start;
         private DataGridView dgw_log;
-        private Button btn_RequestChats;
         private Button btn_dissconnect;
         private GroupBox gr_Connection;
         private GroupBox gr_Authentication;

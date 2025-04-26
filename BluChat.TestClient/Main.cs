@@ -35,22 +35,21 @@ namespace BluChat.TestClient
         {
             client = new Client(txt_IpAdress.Text, Convert.ToInt32(txt_port.Text));
             SetEvents();
+
+
             client.Connect();
 
             if (client.IsConnected)
             {
                 gr_Authentication.Visible = true;
             }
+
+            btn_start.Enabled = false;
+            btn_dissconnect.Enabled = true;
         }
 
-        bool eventSet = false;
         private void SetEvents()
         {
-            if (eventSet)
-                return;
-
-            eventSet = true;
-
             client.TcpEvents.DataReceived += DataReceived;
             client.Events.UserVerified += UserVerified;
             client.Events.UserFailedVerification += UserFailedVerification;
@@ -65,6 +64,8 @@ namespace BluChat.TestClient
             client.Disconnect();
             gr_Authentication.Visible = false;
             gr_chats_messages.Visible = false;
+            btn_start.Enabled = true;
+            btn_dissconnect.Enabled = false;
         }
 
         private void DataReceived(object sender, SuperSimpleTcp.DataReceivedEventArgs e)
@@ -140,10 +141,7 @@ namespace BluChat.TestClient
             }
         }
 
-        private void btn_RequestChats_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void label2_Click(object sender, EventArgs e)
         {

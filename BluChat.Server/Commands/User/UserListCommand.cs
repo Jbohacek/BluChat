@@ -10,14 +10,28 @@ namespace BluChat.ServerConsole.Commands.User
     public class UserListCommand(Server server) : Command(server)
     {
         public override string Name => "UserList";
-
-        public override string Description => "This will list of every user connected to server";
+        public override string Description => "This will list every user in database";
+        public override string Format => "";
 
         public override void InvokeCommand(string[] inputs)
         {
-            //todo: dodělat userlistadd
+            if (!CheckFormat(inputs)) return;
 
-            throw new Exception("dodělat");
+            Console.WriteLine($"<--- UserList --->");
+            List<Core.UserFolder.User> users = server.Database.Users.GetAll().ToList();
+            Console.WriteLine("Count: " + users.Count);
+            Console.WriteLine("<---\t--->");
+            foreach (var user in users)
+            {
+                var isConnected = "Not connected";
+                if (user.ServerStatus != null)
+                    if(user.ServerStatus.IsConnected) 
+                        isConnected = "Connected";
+                
+                Console.WriteLine($"{user.Id}\t{user.UserName, -15}\t{isConnected,-15}\t");
+            }
+
+            Console.WriteLine("<--- End --->");
         }
     }
 }

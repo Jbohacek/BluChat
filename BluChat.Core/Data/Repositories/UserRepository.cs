@@ -14,7 +14,7 @@ namespace BluChat.Core.Data.Repositories
 
         public override void Add(User item)
         {
-            if (Exists(x => x.UserName == item.UserName))
+            if (Exists(x => x.UserName.ToLower() == item.UserName.ToLower()))
             {
                 throw new Exception($"User with username {item.UserName} already exists");
             }
@@ -25,7 +25,17 @@ namespace BluChat.Core.Data.Repositories
 
         public User GetAdmin()
         {
-            return this.GetFirstOrDefault(x => x.UserName == "Admin");
+            return this.GetFirst(x => x.UserName == "Admin");
+        }
+
+        public void UpdatePassword(string username, string password)
+        {
+            User? user = _context.Users.FirstOrDefault(x => x.UserName == username);
+            if (user == null)
+                throw new Exception($"{username} does not exists");
+
+            user.HashPassword = PasswordManager.HashPassword(password);
+            base.Update(user);
         }
 
         public bool Exists(Func<User,bool> predicate)

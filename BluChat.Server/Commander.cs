@@ -61,5 +61,31 @@ namespace BluChat.ServerConsole
             Console.ResetColor();
         }
 
+        public static bool AskYesNo(string question = "")
+        {
+            do
+            {
+                if (question != "")
+                    Console.WriteLine($"{question} y/n");
+                else
+                    Console.WriteLine("Are you sure? y/n");
+
+                string? input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input))
+                {
+                    if (input.ToLower() == "y")
+                    {
+                        return true;
+                    }
+                    else if (input.ToLower() == "n")
+                    {
+                        return false;
+                    }
+                }
+                SendErrorMessage("y/n");
+
+            } while (true);
+        }
+
     }
 }

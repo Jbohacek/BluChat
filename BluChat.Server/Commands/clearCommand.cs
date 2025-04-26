@@ -11,8 +11,11 @@ namespace BluChat.ServerConsole.Commands
     {
         public override string Name => "clear";
         public override string Description => "it will clear the console";
+        public override string Format => "";
+
         public override void InvokeCommand(string[] inputs)
         {
+            if (!CheckFormat(inputs)) return;
             Console.Clear();
         }
     }

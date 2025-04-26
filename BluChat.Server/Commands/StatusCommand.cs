@@ -11,8 +11,11 @@ namespace BluChat.ServerConsole.Commands
     {
         public override string Name => "status";
         public override string Description => "this will show you status of the server";
+        public override string Format => "";
+
         public override void InvokeCommand(string[] inputs)
         {
+            if (!CheckFormat(inputs)) return;
             ServerConsoleInterface consoleInterface = new ServerConsoleInterface(server);
 
             Console.WriteLine(consoleInterface.GetStatus());

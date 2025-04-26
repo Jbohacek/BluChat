@@ -21,7 +21,7 @@ namespace BluChat.Core.Messages.MessageTypes.GetChatMessages
             var database = serverManager.Database;
             var serializer = serverManager.serializer;
             var logger = serverManager.Logger;
-            var user = database.Users.GetFirstOrDefault(x => x.Id == Sender.User.Id);
+            var user = database.Users.GetFirst(x => x.Id == Sender.User.Id);
 
             List<Message> messages = database.Messages.GetAll("Sender").Where(x => x.ParentChat.Id == chat.Id).ToList();
 

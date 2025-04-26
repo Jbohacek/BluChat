@@ -12,9 +12,12 @@ namespace BluChat.ServerConsole.Commands
     {
         public override string Name => "help";
         public override string Description => "it helps";
+        public override string Format => "";
 
         public override void InvokeCommand(string[] inputs)
         {
+            if (!CheckFormat(inputs)) return;
+
             var commandTypes = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(Command)) && !t.IsAbstract).ToList();
@@ -31,7 +34,12 @@ namespace BluChat.ServerConsole.Commands
                 // Create an instance of each Command subclass
                 if (Activator.CreateInstance(type, server) is Command commandInstance)
                 {
-                    Console.WriteLine($"{commandInstance.Name,-15}\t{commandInstance.Description}");
+                    if(commandInstance.Format != "")
+                        Console.WriteLine($"{commandInstance.Name,-15}\t{commandInstance.Format} : {commandInstance.Description}");
+                    else
+                        Console.WriteLine($"{commandInstance.Name,-15}\t{commandInstance.Description}");
+
+
                 }
             }
             Console.WriteLine("<--- End --->");

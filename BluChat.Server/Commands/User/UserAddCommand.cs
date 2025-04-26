@@ -11,14 +11,13 @@ namespace BluChat.ServerConsole.Commands.User
     internal class UserAddCommand(Server server) : Command(server)
     {
         public override string Name => "UserAdd";
-        public override string Description => "[UserName] [password] [password]";
+        public override string Description => "this will add user to database";
+        public override string Format => "[UserName] [password] [password]";
+
         public override void InvokeCommand(string[] inputs)
         {
-            if (inputs.Length != 4)
-            {
-                Commander.SendErrorMessage("Format is: [Username] [password] [password]");
-                return;
-            }
+            if (!CheckFormat(inputs)) return;
+
 
             if (inputs[2] != inputs[3])
             {
