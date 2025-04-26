@@ -29,6 +29,7 @@ namespace BluChat.Core.ServerFolder
         public UnitOfWork Database { get; set; }
         public MessageServerManager MessageServerManager { get; set; }
         
+        public DateTime? ServerStartDate { get; set; }
 
         private Server()
         {
@@ -57,7 +58,9 @@ namespace BluChat.Core.ServerFolder
         {
             Logger.Add(LogFactory.ServerStarted(Adress));
             server.Start();
+            ServerStartDate = DateTime.Now;
         }
+        //todo: přidat stop možnost :D
 
         //todo: Tohle fuj, dat pryc
         public void Send(User user, string message)

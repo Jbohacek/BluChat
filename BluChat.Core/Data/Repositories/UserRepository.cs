@@ -14,6 +14,11 @@ namespace BluChat.Core.Data.Repositories
 
         public override void Add(User item)
         {
+            if (Exists(x => x.UserName == item.UserName))
+            {
+                throw new Exception($"User with username {item.UserName} already exists");
+            }
+
             item.HashPassword = PasswordManager.HashPassword(item.HashPassword);
             base.Add(item);
         }

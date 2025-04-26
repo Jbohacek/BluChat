@@ -17,11 +17,25 @@ namespace BluChat.Core.ServerFolder
             sb.Append($"<--- {title} --->\n");
         }
 
+        public string GetStatus()
+        {
+            sb.Clear();
+            AddTitle("Status server");
+            TimeSpan? timespan = Server.ServerStartDate - DateTime.Now;
+            if (timespan != null)
+            {
+                sb.Append("Server started on: " + Server.ServerStartDate.Value.ToLocalTime());
+                sb.Append("Its on for: " + timespan);
+            }
+
+            sb.Append("-----");
+            return sb.ToString();
+        }
 
         public string GetUsersList()
         {
             sb.Clear();
-            AddTitle("User List");
+            AddTitle("User connected");
             sb.Append("Guid\t\t\t\t\tAdress\t\t\tTimeSpendOn\tTimeOfJoin\n");
 
             Server.ConnectedUsers.ForEach(x =>

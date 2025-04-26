@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BluChat.Core.ServerFolder;
+
+namespace BluChat.ServerConsole.Commands
+{
+    internal class ExitCommand(Server server) : Command(server)
+    {
+        public override string Name => "exit";
+
+        public override string Description => "it will shut down the server";
+
+        public override void InvokeCommand(string[] inputs)
+        {
+            Environment.Exit(0);
+        }
+    }
+}

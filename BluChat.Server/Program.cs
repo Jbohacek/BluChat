@@ -50,6 +50,8 @@ namespace BluChat.ServerConsole
 
         static void HandleInputs(Server server)
         {
+            Commander commander = new Commander(server);
+
             ServerConsoleInterface consoleInterface = new ServerConsoleInterface(server);
 
             while (true)
@@ -58,52 +60,37 @@ namespace BluChat.ServerConsole
                 if(string.IsNullOrEmpty(input)) continue;
 
                 input = input.Trim().ToLower();
-
                 string[] inputs = input.Contains(' ') ? input.Split(' ') : new[] { input };
                 
+                Command command = commander.FindCommand(inputs[0]);
 
-                switch (inputs[0])
+                if (inputs is [_, "?"])
                 {
-                    case "exit":
-                        Environment.Exit(0);
-                        break;
-
-                    case "list":
-                        Console.WriteLine(consoleInterface.GetUsersList());
-                        break;
-
-                    case "clear":
-                        Console.Clear();
-                        break;
-                    case "send":
-                        if (inputs.Length <= 2) continue;
-                        IpPort adress = new IpPort(inputs[1]);
-                        User user = server.ConnectedUsers.Find(x => adress.ToString() == x.Adress.ToString());
-                        StringBuilder message = new StringBuilder();
-                        for (int i = 2; i < inputs.Length; i++)
-                        {
-                            message.Append(inputs[i]);
-                        }
-
-                        server.Send(user, message.ToString());
-                        break;
-
-                    case "help":
-                        Console.WriteLine("<--- Help --->");
-                        Console.WriteLine("List\t\t\t\t - shows every client connected");
-                        Console.WriteLine("send [Ip]:[Port] [Message]\t - sends [Message] to client with [Ip:Port]");
-                        Console.WriteLine("clear\t\t\t\t - clears the console");
-                        Console.WriteLine("help\t\t\t - helps");
-                        Console.WriteLine("<--- End --->");
-
-                        break;
-
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine(">> Command not found - try \"Help\" for more commands");
-                        Console.ResetColor();
-                        break;
+                    Console.WriteLine(command.Name + " >> " + command.Description);
+                    continue;
                 }
+
+                command.InvokeCommand(inputs);
+
+                //    case "send":
+                //        if (inputs.Length <= 2) continue;
+                //        IpPort adress = new IpPort(inputs[1]);
+                //        User user = server.ConnectedUsers.Find(x => adress.ToString() == x.Adress.ToString());
+                //        StringBuilder message = new StringBuilder();
+                //        for (int i = 2; i < inputs.Length; i++)
+                //        {
+                //            message.Append(inputs[i]);
+                //        }
+
+                //        server.Send(user, message.ToString());
+                //        break;
+
+
+
+                //        break;
+
+
+                //}
 
             }
         }
