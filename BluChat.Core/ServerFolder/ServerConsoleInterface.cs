@@ -25,7 +25,7 @@ namespace BluChat.Core.ServerFolder
             if (timespan != null)
             {
                 sb.Append("Server started on: " + Server.ServerStartDate.Value.ToLocalTime());
-                sb.Append("Its on for: " + timespan);
+                sb.Append("\nIts on for: " + timespan);
             }
 
             sb.Append("-----");

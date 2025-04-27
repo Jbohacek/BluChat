@@ -46,7 +46,9 @@ namespace BluChat.Core.ClientFolder
         public void Connect()
         {
             if(IsConnected) return;
+
             _client.Connect();
+
         }
 
 

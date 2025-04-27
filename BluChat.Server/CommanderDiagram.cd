@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BluChat.ServerConsole.Command">
+    <Position X="5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAgAAAQAAAgAAAAAAAAAAgCAAAA=</HashCode>
+      <FileName>Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.clearCommand" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\clearCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.ExitCommand" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\ExitCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.HelpCommand" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\HelpCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.NotFoundCommand" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\NotFoundCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.StatusCommand" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\StatusCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserAddCommand" Collapsed="true">
+    <Position X="3" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserAddCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserCommand" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserImportCommand" Collapsed="true">
+    <Position X="1.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserImportCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserListCommand" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserListCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserRemoveCommand" Collapsed="true">
+    <Position X="1.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserRemoveCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.User.UserUpdateCommand" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAgAIBAAQAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\User\UserUpdateCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatAddCommand" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatAddCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatAddUserCommand" Collapsed="true">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatAddUserCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatCommand" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatListCommand" Collapsed="true">
+    <Position X="2" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatListCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatRemoveCommand" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatRemoveCommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.ServerConsole.Commands.Chat.ChatUpdate" Collapsed="true">
+    <Position X="2" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAgAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Commands\Chat\ChatUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

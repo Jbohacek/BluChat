@@ -16,22 +16,8 @@
     </TypeIdentifier>
     <Lollipop Position="0.319" />
   </Class>
-  <Class Name="BluChat.Core.Server.Server">
-    <Position X="1.5" Y="8" Width="2.5" />
-    <NestedTypes>
-      <Class Name="BluChat.Core.Server.Server.ServerBuilder" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Server\Server.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>gCAAACAAACIAAAAAAEAAAAAAAAgAgAQAAAAAAAAAAAI=</HashCode>
-      <FileName>Server\Server.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BluChat.Core.Logger.LogEventHandler">
-    <Position X="9.5" Y="1" Width="1.5" />
+    <Position X="10" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAQA=</HashCode>
       <FileName>Logger\LogEventHandler.cs</FileName>
@@ -39,34 +25,153 @@
   </Class>
   <Class Name="BluChat.Core.Logger.LogFactory">
     <Position X="11.75" Y="3" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="BluChat.Core.Logger.LogFactory.Authentication">
+        <TypeIdentifier>
+          <NewMemberFileName>Logger\LogFactory.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAAAAACAAAAAAAEAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAABAAABACAAAIAAIEAAAAIAAAAAAASAA=</HashCode>
       <FileName>Logger\LogFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BluChat.Core.Server.ServerConsoleInterface">
-    <Position X="4.25" Y="8" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAgIAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
-      <FileName>Server\ServerConsoleInterface.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BluChat.Core.UserFolder.User">
-    <Position X="1.5" Y="4.25" Width="2.5" />
+    <Position X="0.5" Y="4.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAEAAAAAAAAAAAAAAAAAoAQAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAkAAABAAAAAAAAAAgAAAIAAQAAAQAAAAA=</HashCode>
       <FileName>UserFolder\User.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="BluChat.Core.Logger.Interfaces.ILogLoader">
-    <Position X="7" Y="0.5" Width="1.5" />
+  <Class Name="BluChat.Core.IpPort">
+    <Position X="14" Y="11.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAACAAAAAAAAAAAAAAAIBA=</HashCode>
+      <FileName>IpPort.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.ServerFolder.Server">
+    <Position X="18.75" Y="10.25" Width="3.5" />
+    <NestedTypes>
+      <Class Name="BluChat.Core.ServerFolder.Server.ServerBuilder" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ServerFolder\Server.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gCAACAAAAGIAAIAAAEAAAAAAIAgAghQAAAAIAAAAAAI=</HashCode>
+      <FileName>ServerFolder\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.ClientFolder.Client">
+    <Position X="10.25" Y="24.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAQEBAAAAAAIIAAggIBAAAAEAAAgAIAAA=</HashCode>
+      <FileName>ClientFolder\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Data.Repo&lt;T&gt;">
+    <Position X="1.5" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAgAAAQAAAAAAJAAAAAAACAAAAgAAAQAAAAA=</HashCode>
+      <FileName>Data\Repo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Data.Repositories.ChatRepository" Collapsed="true">
+    <Position X="5.25" Y="14" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAABAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Data\Repositories\ChatRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Data.Repositories.MessageRepository" Collapsed="true">
+    <Position X="5.25" Y="14.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Repositories\MessageRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Data.Repositories.UserRepository" Collapsed="true">
+    <Position X="5.25" Y="15.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAIAABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAMAAAA=</HashCode>
+      <FileName>Data\Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Data.UnitOfWork">
+    <Position X="7.5" Y="14" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAKAAAAIABAABAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Data\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Enums">
+    <Position X="14.5" Y="5.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="BluChat.Core.Enums.Level">
+        <TypeIdentifier>
+          <NewMemberFileName>Enums.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="BluChat.Core.Enums.LevelExtensions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Enums.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.Messages.Data.Chat">
+    <Position X="5.5" Y="19.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACCAGAAAAAAAAAEAAAAQAQAAAAAAAAgAAAACQAAAAA=</HashCode>
+      <FileName>Messages\Data\Chat.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BluChat.Core.Messages.Data.Message">
+    <Position X="8.75" Y="19.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAIABA=</HashCode>
+      <FileName>Messages\Data\Message.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BluChat.Core.UserFolder.UserServerStatus">
+    <Position X="3.25" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEBAAAAAAAAAAAgAAAAgAQAAAAAAAAA=</HashCode>
+      <FileName>UserFolder\UserServerStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BluChat.Core.ClientFolder.ClientEvents">
+    <Position X="14.75" Y="24.75" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAECCMAIACIAAAAAAAgAAAAAAAIAAAAACAQ=</HashCode>
+      <FileName>ClientFolder\ClientEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BluChat.Core.Logger.Interfaces.ILogLoader" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Logger\Interfaces\ILogLoader.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="BluChat.Core.Logger.Interfaces.ILogSaver">
-    <Position X="5.25" Y="0.5" Width="1.5" />
+  <Interface Name="BluChat.Core.Logger.Interfaces.ILogSaver" Collapsed="true">
+    <Position X="6.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Logger\Interfaces\ILogSaver.cs</FileName>

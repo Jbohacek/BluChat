@@ -66,7 +66,7 @@ namespace BluChat.ServerConsole
 
                 if (inputs is [_, "?"])
                 {
-                    Console.WriteLine(command.Name + " >> " + command.Description);
+                    Console.WriteLine(command.Name + " >> " + command.Format  + "\n" + command.Description);
                     continue;
                 }
 
