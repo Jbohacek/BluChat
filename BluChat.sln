@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Server", "BluChat.Server\BluChat.Server.csproj", "{1AA1C8E1-89D5-46C2-B11B-3BD2FC89EFF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluChat.ServerConsole", "BluChat.Server\BluChat.ServerConsole.csproj", "{1AA1C8E1-89D5-46C2-B11B-3BD2FC89EFF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.TestClient", "BluChat.TestClient\BluChat.TestClient.csproj", "{260D9B53-92C0-40DC-A451-301F9C66A842}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluChat.TestClient", "BluChat.TestClient\BluChat.TestClient.csproj", "{260D9B53-92C0-40DC-A451-301F9C66A842}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Core", "BluChat.Core\BluChat.Core.csproj", "{46D4EB13-D773-49A3-87D9-B4F30D22F83D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluChat.Core", "BluChat.Core\BluChat.Core.csproj", "{46D4EB13-D773-49A3-87D9-B4F30D22F83D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

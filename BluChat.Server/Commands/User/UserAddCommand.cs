@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BluChat.Core.ServerFolder;
+
+namespace BluChat.ServerConsole.Commands.User
+{
+    internal class UserAddCommand(Server server) : Command(server)
+    {
+        public override string Name => "UserAdd";
+        public override string Description => "this will add user to database";
+        public override string Format => "[UserName] [password] [password]";
+
+        public override void InvokeCommand(string[] inputs)
+        {
+            if (!CheckFormat(inputs)) return;
+
+
+            if (inputs[2] != inputs[3])
+            {
+                Commander.SendErrorMessage("Passwords do not match!");
+                return;
+            }
+
+            string username = inputs[1];
+            string password = inputs[2];
+
+            Core.UserFolder.User user = new Core.UserFolder.User();
+            user.HashPassword = password;
+            user.UserName = username;
+
+            if (server.Database.Users.Exists(x => x.UserName == user.UserName))
+            {
+                Commander.SendErrorMessage($"User already with {user.UserName} exists");
+                return;
+            }
+
+            server.Database.Users.Add(user);
+            server.Database.Save();
+
+            Commander.SendSuccessMessage($"{user.UserName} Succesfully added");
+        }
+    }
+}
