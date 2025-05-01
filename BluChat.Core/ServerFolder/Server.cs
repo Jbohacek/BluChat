@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using SuperSimpleTcp;
 using BluChat.Core.Data.Interfaces;
 using BluChat.Core.Messages;
+using Data.EF;
 
 namespace BluChat.Core.ServerFolder
 {
@@ -30,6 +31,8 @@ namespace BluChat.Core.ServerFolder
         public MessageServerManager MessageServerManager { get; set; }
         
         public DateTime? ServerStartDate { get; set; }
+
+        public Testovaci
 
         private Server()
         {
