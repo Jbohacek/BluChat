@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "MainProfile",
+    "Projects": [
+      {
+        "Path": "BluChat.Server\\BluNoro.ServerConsole.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "BluChat.TestClient\\BluNoro.TestClient.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
