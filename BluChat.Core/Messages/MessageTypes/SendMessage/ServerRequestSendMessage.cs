@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BluChat.Core.Logger;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Contracts.Enums;
+using BluChat.Core.Infrastructure.Logger;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes.SendMessage.Confirmation;
 
 namespace BluChat.Core.Messages.MessageTypes.SendMessage
@@ -44,7 +41,7 @@ namespace BluChat.Core.Messages.MessageTypes.SendMessage
                 serverManager.Database.Chats.GetAll("Users").FirstOrDefault(x => x.Id == ParentChat.Id);
             if (chatFromDatabase == null)
             {
-                serverManager.Logger.Add(new Log("Chat not found",ParentChat.Id.ToString(),Enums.Level.ServerError));
+                serverManager.Logger.Add(new Log("Chat not found",ParentChat.Id.ToString(), Enums.Level.ClientError));
                 return;
             }
 

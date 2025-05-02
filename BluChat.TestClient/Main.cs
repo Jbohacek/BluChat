@@ -1,14 +1,13 @@
 using System.ComponentModel;
 using SuperSimpleTcp;
-
 using System.Text;
 using System.Diagnostics;
 using BluChat.Core.Messages.MessageTypes.GetChats;
-using BluChat.Core.ClientFolder;
 using BluChat.Core.ClientFolder.EvenHandlers;
 using System;
-using BluChat.Core.Messages.Data;
 using System.Windows.Forms;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Networking;
 
 
 namespace BluChat.TestClient

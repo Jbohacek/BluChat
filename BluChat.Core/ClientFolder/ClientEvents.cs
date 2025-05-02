@@ -9,6 +9,7 @@ using BluChat.Core.Messages.MessageTypes.GetChatMessages;
 using BluChat.Core.Messages.MessageTypes.GetChats;
 using BluChat.Core.Messages.MessageTypes.SendMessage;
 using BluChat.Core.Messages.MessageTypes.SendMessage.Confirmation;
+using BluChat.Core.Networking;
 
 namespace BluChat.Core.ClientFolder
 {

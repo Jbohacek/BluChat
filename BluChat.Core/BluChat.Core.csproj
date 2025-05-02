@@ -13,18 +13,19 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="9.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" />
     <PackageReference Include="SuperSimpleTcp" Version="3.0.17" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Messages\MessageTypes\AddChat\" />
     <Folder Include="Messages\MessageTypes\AddUser\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\BluChat.Core.Common\BluChat.Core.Common.csproj" />
+    <ProjectReference Include="..\Core\BluChat.Core.Contracts\BluChat.Core.Contracts.csproj" />
+    <ProjectReference Include="..\Core\BluChat.Core.Data.EF\BluChat.Core.Data.EF.csproj" />
+    <ProjectReference Include="..\Core\BluChat.Core.Infrastructure\BluChat.Core.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

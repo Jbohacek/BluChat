@@ -9,6 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluChat.TestClient", "BluCh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluChat.Core", "BluChat.Core\BluChat.Core.csproj", "{46D4EB13-D773-49A3-87D9-B4F30D22F83D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Core.Common", "Core\BluChat.Core.Common\BluChat.Core.Common.csproj", "{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Core.Contracts", "Core\BluChat.Core.Contracts\BluChat.Core.Contracts.csproj", "{1578A9F9-8181-184A-5D23-923247786B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Core.Data.EF", "Core\BluChat.Core.Data.EF\BluChat.Core.Data.EF.csproj", "{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluChat.Core.Infrastructure", "Core\BluChat.Core.Infrastructure\BluChat.Core.Infrastructure.csproj", "{B3136796-C85A-E573-9690-1CA671DCB153}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +37,31 @@ Global
 		{46D4EB13-D773-49A3-87D9-B4F30D22F83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46D4EB13-D773-49A3-87D9-B4F30D22F83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46D4EB13-D773-49A3-87D9-B4F30D22F83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1578A9F9-8181-184A-5D23-923247786B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1578A9F9-8181-184A-5D23-923247786B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1578A9F9-8181-184A-5D23-923247786B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1578A9F9-8181-184A-5D23-923247786B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3136796-C85A-E573-9690-1CA671DCB153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3136796-C85A-E573-9690-1CA671DCB153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3136796-C85A-E573-9690-1CA671DCB153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3136796-C85A-E573-9690-1CA671DCB153}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D68DFDE3-D030-79AE-A5AE-C852A22C9BCA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{1578A9F9-8181-184A-5D23-923247786B8B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{65A9C9ED-B6B8-DFD2-C16B-278D15EBAADB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B3136796-C85A-E573-9690-1CA671DCB153} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A17D94FC-AEDC-42B1-AB29-6B360403F0DC}

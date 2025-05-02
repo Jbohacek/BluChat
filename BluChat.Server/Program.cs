@@ -1,15 +1,18 @@
 ﻿using System.Reflection;
 using System.Text;
 using BluChat.Core;
+using BluChat.Core.Common.DataObjects;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Common.Entities;
 using BluChat.Core.Data;
-using BluChat.Core.Logger;
+using BluChat.Core.Data.EF.Context;
+using BluChat.Core.Infrastructure.Logger;
 using BluChat.Core.Messages;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes;
 using BluChat.Core.Messages.SenderReciever;
+using BluChat.Core.Networking;
 using BluChat.Core.ServerFolder;
-using BluChat.Core.UserFolder;
 using Microsoft.EntityFrameworkCore;
 
 namespace BluChat.ServerConsole
