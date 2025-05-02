@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluChat.Core.ServerFolder;
 using BluChat.Core.Common.Entities;
 using BluChat.Core.Infrastructure;
+using BluChat.Core.Networking;
 
 namespace BluChat.ServerConsole.Commands.UserFolder
 {

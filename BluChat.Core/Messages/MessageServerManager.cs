@@ -4,11 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using BluChat.Core.ServerFolder;
 using SuperSimpleTcp;
 using BluChat.Core.Infrastructure;
 using BluChat.Core.Infrastructure.Logger.Interfaces;
+using BluChat.Core.Networking;
 
 namespace BluChat.Core.Messages
 {

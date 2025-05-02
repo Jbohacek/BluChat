@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
+
+//todo: Předělat
+
 using System.Text;
-using System.Threading.Tasks;
+using BluChat.Core.Networking;
 
 namespace BluChat.Core.ServerFolder
 {

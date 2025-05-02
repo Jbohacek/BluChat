@@ -1,6 +1,5 @@
 ﻿using BluChat.Core.Messages.MessageTypes;
 using BluChat.Core.Messages.SenderReciever;
-using BluChat.Core.ServerFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using BluChat.Core.Common.Entities;
+using BluChat.Core.Networking;
 
 namespace BluChat.Core.Messages.Abstracts
 {

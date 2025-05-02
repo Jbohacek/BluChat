@@ -1,6 +1,5 @@
 ﻿using BluChat.Core.Common.Entities;
-using BluChat.Core.ServerFolder;
-
+using BluChat.Core.Networking;
 
 namespace BluChat.ServerConsole.Commands.ChatFolder
 {

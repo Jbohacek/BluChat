@@ -16,7 +16,7 @@ using BluChat.Core.Infrastructure.Logger;
 using BluChat.Core.Contracts.Enums;
 
 
-namespace BluChat.Core.ServerFolder
+namespace BluChat.Core.Networking
 {
     public class Server
     {

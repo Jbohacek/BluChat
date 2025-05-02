@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using BluChat.Core.ServerFolder;
 using BluChat.Core.Common.Entities;
+using BluChat.Core.Networking;
 
 namespace BluChat.ServerConsole.Commands.UserFolder
 {

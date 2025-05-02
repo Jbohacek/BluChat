@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.ClientFolder;
 using BluChat.Core.Common.DataObjects;
 using BluChat.Core.Common.Entities;
 using BluChat.Core.Messages;
@@ -12,7 +13,7 @@ using BluChat.Core.Messages.SenderReciever;
 using SuperSimpleTcp;
 using DataReceivedEventArgs = SuperSimpleTcp.DataReceivedEventArgs;
 
-namespace BluChat.Core.ClientFolder
+namespace BluChat.Core.Networking
 {
     public class Client
     {
