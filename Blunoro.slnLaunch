@@ -3,11 +3,11 @@
     "Name": "MainProfile",
     "Projects": [
       {
-        "Path": "BluChat.Server\\BluNoro.ServerConsole.csproj",
+        "Path": "BluNoro.TestClient\\BluNoro.TestClient.csproj",
         "Action": "Start"
       },
       {
-        "Path": "BluChat.TestClient\\BluNoro.TestClient.csproj",
+        "Path": "BluNoro.Server\\BluNoro.ServerConsole.csproj",
         "Action": "Start"
       }
     ]
