@@ -5,7 +5,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Common.Interfaces;
+using BluNoro.Core.Common.Services;
+using BluNoro.Core.Contracts.Interfaces;
 using BluNoro.Core.Data.EF.Context;
 
 namespace BluNoro.Core.Data.EF.Repositories

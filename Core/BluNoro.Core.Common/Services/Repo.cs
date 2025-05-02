@@ -1,7 +1,8 @@
 ﻿using System.Linq.Expressions;
+using BluNoro.Core.Contracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace BluNoro.Core.Common.Interfaces
+namespace BluNoro.Core.Common.Services
 {
     public abstract class Repo<T> where T : class , ITable
     {

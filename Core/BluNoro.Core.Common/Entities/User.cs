@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using BluNoro.Core.Common.DataObjects;
-using BluNoro.Core.Common.Interfaces;
+using BluNoro.Core.Contracts.Interfaces;
 
 namespace BluNoro.Core.Common.Entities
 {

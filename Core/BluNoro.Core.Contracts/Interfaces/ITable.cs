@@ -1,4 +1,4 @@
-﻿namespace BluNoro.Core.Common.Interfaces;
+﻿namespace BluNoro.Core.Contracts.Interfaces;
 
 public interface ITable
 {

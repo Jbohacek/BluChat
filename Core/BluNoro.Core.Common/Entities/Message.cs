@@ -1,4 +1,4 @@
-﻿using BluNoro.Core.Common.Interfaces;
+﻿using BluNoro.Core.Contracts.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

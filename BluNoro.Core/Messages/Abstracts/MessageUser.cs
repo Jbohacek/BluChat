@@ -12,8 +12,6 @@ namespace BluNoro.Core.Messages.Abstracts
     public abstract class MessageUser(User user)
     {
         public string IpPort { get; set; }
-
-
         public User? User { get; set; }
 
         public void FindUser(MessageServerManager serverManager)

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Common.Interfaces;
+using BluNoro.Core.Common.Services;
+using BluNoro.Core.Contracts.Interfaces;
 using BluNoro.Core.Data.EF.Context;
 using Microsoft.EntityFrameworkCore;
 
