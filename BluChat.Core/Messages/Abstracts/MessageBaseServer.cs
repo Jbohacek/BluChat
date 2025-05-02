@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using BluChat.Core.Messages.Data;
+using BluChat.Core.Common.Entities;
 
 namespace BluChat.Core.Messages.Abstracts
 {

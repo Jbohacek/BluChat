@@ -1,4 +1,4 @@
-﻿using BluChat.Core.UserFolder;
+﻿using BluChat.Core.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluChat.Core.Logger;
+using BluChat.Core.Common.DataObjects;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Infrastructure;
+using BluChat.Core.Infrastructure.Logger;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.SenderReciever;
-using BluChat.Core.UserFolder;
 
 namespace BluChat.Core.Messages.MessageTypes.Authenticate
 {

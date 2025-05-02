@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluChat.Core.ClientFolder;
+using BluChat.Core.Common.Entities;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
 using BluChat.Core.Messages.MessageTypes.Authenticate;
 using BluChat.Core.Messages.MessageTypes.GetChatMessages;
 using BluChat.Core.Messages.MessageTypes.GetChats;
 using BluChat.Core.Messages.MessageTypes.SendMessage;
 using BluChat.Core.Messages.SenderReciever;
-using BluChat.Core.UserFolder;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using SuperSimpleTcp;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
+
 
 namespace BluChat.Core.Messages.MessageTypes.Authenticate
 {

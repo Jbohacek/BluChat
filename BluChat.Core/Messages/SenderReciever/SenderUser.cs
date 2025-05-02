@@ -1,5 +1,5 @@
-﻿using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.UserFolder;
+﻿using BluChat.Core.Common.Entities;
+using BluChat.Core.Messages.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

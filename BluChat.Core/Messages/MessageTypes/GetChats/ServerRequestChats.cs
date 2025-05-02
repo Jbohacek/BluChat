@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Common.Entities;
 using BluChat.Core.Messages.Abstracts;
-using BluChat.Core.Messages.Data;
-using BluChat.Core.UserFolder;
 
 namespace BluChat.Core.Messages.MessageTypes.GetChats
 {

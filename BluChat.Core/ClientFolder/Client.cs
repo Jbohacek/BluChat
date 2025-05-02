@@ -5,9 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluChat.Core.Common.DataObjects;
+using BluChat.Core.Common.Entities;
 using BluChat.Core.Messages;
 using BluChat.Core.Messages.SenderReciever;
-using BluChat.Core.UserFolder;
 using SuperSimpleTcp;
 using DataReceivedEventArgs = SuperSimpleTcp.DataReceivedEventArgs;
 

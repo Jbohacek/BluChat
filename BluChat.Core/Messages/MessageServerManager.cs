@@ -1,19 +1,14 @@
-﻿using BluChat.Core.Data;
-using BluChat.Core.Messages.Abstracts;
+﻿using BluChat.Core.Messages.Abstracts;
 using BluChat.Core.Messages.MessageTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using BluChat.Core.Logger;
-using BluChat.Core.Messages.Data;
-using BluChat.Core.UserFolder;
-using Microsoft.Extensions.Logging;
-using ILogger = BluChat.Core.Logger.Interfaces.ILogger;
-using BluChat.Core.Messages.SenderReciever;
+
 using BluChat.Core.ServerFolder;
 using SuperSimpleTcp;
+using BluChat.Core.Infrastructure;
+using BluChat.Core.Infrastructure.Logger.Interfaces;
 
 namespace BluChat.Core.Messages
 {

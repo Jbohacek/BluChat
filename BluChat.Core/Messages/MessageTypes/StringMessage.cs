@@ -1,12 +1,12 @@
-﻿using BluChat.Core.Logger;
-using BluChat.Core.Messages.Abstracts;
+﻿using BluChat.Core.Messages.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluChat.Core.Messages.Data;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Infrastructure.Logger;
 
 namespace BluChat.Core.Messages.MessageTypes
 {

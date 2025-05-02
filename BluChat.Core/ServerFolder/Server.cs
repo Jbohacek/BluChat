@@ -4,15 +4,17 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using BluChat.Core.Data;
-using BluChat.Core.Logger;
-using BluChat.Core.UserFolder;
-using BluChat.Core.Logger.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using SuperSimpleTcp;
-using BluChat.Core.Data.Interfaces;
 using BluChat.Core.Messages;
-using Data.EF;
+using BluChat.Core.Data.EF.Context;
+using BluChat.Core.Common.DataObjects;
+using BluChat.Core.Common.Entities;
+using BluChat.Core.Infrastructure;
+using BluChat.Core.Infrastructure.Logger.Interfaces;
+using BluChat.Core.Infrastructure.Logger;
+using BluChat.Core.Contracts.Enums;
+
 
 namespace BluChat.Core.ServerFolder
 {
@@ -31,8 +33,6 @@ namespace BluChat.Core.ServerFolder
         public MessageServerManager MessageServerManager { get; set; }
         
         public DateTime? ServerStartDate { get; set; }
-
-        public Testovaci
 
         private Server()
         {
