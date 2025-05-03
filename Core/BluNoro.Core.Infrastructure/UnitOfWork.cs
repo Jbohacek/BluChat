@@ -1,4 +1,5 @@
-﻿using BluNoro.Core.Data.EF.Context;
+﻿using BluNoro.Core.Common.Entities;
+using BluNoro.Core.Data.EF.Context;
 using BluNoro.Core.Data.EF.Repositories;
 using BluNoro.Core.Infrastructure.Logger;
 using BluNoro.Core.Infrastructure.Logger.Interfaces;
@@ -13,6 +14,8 @@ public class UnitOfWork
     public UserRepository Users { get; }
     public ChatRepository Chats { get; }
     public MessageRepository Messages { get; }
+    public AttachmentRepository Attachments { get; }
+    public SavedFileRepository SavedFiles { get; }
 
     public ILogger Logger { get; set; }
 
@@ -23,6 +26,8 @@ public class UnitOfWork
         Users = new UserRepository(_context);
         Chats = new ChatRepository(_context);
         Messages = new MessageRepository(_context);
+        Attachments = new AttachmentRepository(_context);
+        SavedFiles = new SavedFileRepository(_context);
     }
 
     public void Save()

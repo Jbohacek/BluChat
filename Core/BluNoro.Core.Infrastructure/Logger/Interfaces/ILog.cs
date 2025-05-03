@@ -8,7 +8,7 @@ namespace BluNoro.Core.Infrastructure.Logger.Interfaces
         public string? Content { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public Enums.Level Level { get; set; }
+        public LogLevels.Level Level { get; set; }
 
         public string GetLog();
 

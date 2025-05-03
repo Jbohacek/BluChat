@@ -106,7 +106,7 @@ namespace BluNoro.Core.Server
 
         public void OnLogAdded(object sender, LogEventHandler e)
         {
-            Console.ForegroundColor = Enums.LevelExtensions.ToConsoleColor(e.Log.Level);
+            Console.ForegroundColor = LogLevels.LevelExtensions.ToConsoleColor(e.Log.Level);
             Console.WriteLine(e.Log);
             Console.ResetColor();
         }

@@ -5,16 +5,16 @@ namespace BluNoro.Core.Infrastructure.Logger
 {
     public class Log : ILog
     {
-        public Log(string name,string? message = "", Enums.Level level = Enums.Level.Informal)
+        public Log(string name,string? message = "", LogLevels.Level level = LogLevels.Level.Informal)
         {
             CreateLog(name,message, DateTime.Now,level );
         }
-        public Log(string name, Enums.Level level = Enums.Level.Informal, string? message = "")
+        public Log(string name, LogLevels.Level level = LogLevels.Level.Informal, string? message = "")
         {
             CreateLog(name, message, DateTime.Now, level);
         }
 
-        private void CreateLog(string name ,string? message, DateTime time,Enums.Level level)
+        private void CreateLog(string name ,string? message, DateTime time,LogLevels.Level level)
         {
             Name = name;
             Content = message;
@@ -27,7 +27,7 @@ namespace BluNoro.Core.Infrastructure.Logger
         public Guid Id { get; set; }
         public string? Content { get; set; }
         public DateTime Date { get; set; }
-        public Enums.Level Level { get; set; }
+        public LogLevels.Level Level { get; set; }
 
         public string GetLog()
         {

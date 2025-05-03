@@ -1,4 +1,5 @@
 ﻿using BluNoro.Core.Contracts.Interfaces;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
@@ -15,6 +16,11 @@ namespace BluNoro.Core.Common.Entities
 
         [XmlIgnore]public List<User> Users { get; set; } = new List<User>();
         [XmlIgnore]public List<Message> Messages { get; set; } = new List<Message>();
+
+        [DefaultValue("Default"),MaxLength(1000)] public string ChatPicPath { get; set; } = "DefaultChat";
+
+        [DefaultValue("{}"), MaxLength(Int32.MaxValue)]
+        public string ChatOptions { get; set; } = "{}";
 
         public DateTime CreationOfCreation { get; set; } = DateTime.Now;
 

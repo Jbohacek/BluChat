@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BluNoro.Core.Contracts.Enums
 {
-    public class Enums
+    public class LogLevels
     {
         public enum Level
         {
