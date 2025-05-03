@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.ChatFolder
 {
     public class ChatUpdate(Server server) : Command(server)
     {
         public override string Name => "ChatUpdate";
-        public override string Description => "It will update the chat";
+        public override string Description => "It will update the Chat";
         public override string Format => "[chatname] [newname]";
         public override void InvokeCommand(string[] inputs)
         {
@@ -19,7 +19,7 @@ namespace BluNoro.ServerConsole.Commands.ChatFolder
             var chat = server.Database.Chats.GetFirstOrDefault(x => x.Name.ToLower() == inputs[1].ToLower());
             if (chat == null)
             {
-                Commander.SendErrorMessage("no chat found");
+                Commander.SendErrorMessage("no Chat found");
                 return;
             }
 

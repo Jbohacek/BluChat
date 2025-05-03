@@ -1,12 +1,12 @@
 ﻿using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.ChatFolder
 {
     public class ChatAddUserCommand(Server server) : Command(server)
     {
         public override string Name => "ChatAddUser";
-        public override string Description => "This will add user to chat";
+        public override string Description => "This will add user to Chat";
         public override string Format => "[chatName] [username]";
         public override void InvokeCommand(string[] inputs)
         {

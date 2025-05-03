@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.ClientFolder.EvenHandlers;
-using BluNoro.Core.Messages.MessageTypes.Authenticate;
-using BluNoro.Core.Messages.MessageTypes.GetChatMessages;
-using BluNoro.Core.Messages.MessageTypes.GetChats;
-using BluNoro.Core.Messages.MessageTypes.SendMessage;
-using BluNoro.Core.Messages.MessageTypes.SendMessage.Confirmation;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Common.MessageTypes.Authenticate;
+using BluNoro.Core.Common.MessageTypes.GetChatMessages;
+using BluNoro.Core.Common.MessageTypes.GetChats;
+using BluNoro.Core.Common.MessageTypes.SendMessage;
+using BluNoro.Core.Common.MessageTypes.SendMessage.Confirmation;
 
 namespace BluNoro.Core.ClientFolder
 {
-    public class ClientEvents(Client client)
+    public class ClientEvents(Client.Client client)
     {
-        private Client _client = client;
+        private Client.Client _client = client;
 
         /// <summary>
         /// User verificaion
@@ -23,7 +22,7 @@ namespace BluNoro.Core.ClientFolder
         public event EventHandler<UserVerifiedEventHandler> UserVerified;
         public void OnUserVerificion(ClientSuccessVerification message)
         {
-            UserVerifiedEventHandler handler = new UserVerifiedEventHandler(message.authenticatedUser);
+            UserVerifiedEventHandler handler = new UserVerifiedEventHandler(message.AuthenticatedUser);
             UserVerified.Invoke(_client, handler);
         }
 

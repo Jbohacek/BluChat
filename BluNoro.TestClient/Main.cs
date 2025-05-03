@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System;
 using System.Windows.Forms;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
 using BluNoro.Core.ClientFolder.EvenHandlers;
+using BluNoro.Core.Client;
 
 
 namespace BluChat.TestClient
@@ -153,7 +153,7 @@ namespace BluChat.TestClient
                 MessageBox.Show("Nepøipojeno k server!");
                 return;
             }
-            client.Manager.SendAuthentication(txt_Username.Text, txt_Password.Text);
+            client.Manager.AuthClientController.SendAuthetication(txt_Username.Text, txt_Password.Text);
         }
 
         private Chat? _selectedChat = null;
@@ -169,7 +169,7 @@ namespace BluChat.TestClient
 
             _selectedChat = selectedChat;
 
-            client.Manager.GetChatMessages(selectedChat);
+            client.Manager.ChatsClientController.GetChatMessages(selectedChat);
 
             Debug.WriteLine(sender);
         }
@@ -199,7 +199,7 @@ namespace BluChat.TestClient
                 return;
             }
 
-            client.Manager.SendMessage(txt_userInputMessage.Text, _selectedChat);
+            client.Manager.MessageClientController.SendMessage(txt_userInputMessage.Text, _selectedChat);
         }
 
         private void MessageRecieved(object sender, MessageRecievedArgs e)
@@ -229,7 +229,7 @@ namespace BluChat.TestClient
 
         private void btn_reload_Click(object sender, EventArgs e)
         {
-            client.Manager.ReloadChats();
+            client.Manager.ChatsClientController.ReloadChats();
             btn_reload.Enabled = false;
         }
 

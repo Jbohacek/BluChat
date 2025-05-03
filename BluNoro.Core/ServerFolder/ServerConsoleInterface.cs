@@ -3,13 +3,12 @@
 //todo: Předělat
 
 using System.Text;
-using BluNoro.Core.Networking;
 
 namespace BluNoro.Core.ServerFolder
 {
-    public class ServerConsoleInterface(Server server)
+    public class ServerConsoleInterface(Server.Server server)
     {
-        private Server Server { get; set; } = server;
+        private Server.Server Server { get; set; } = server;
 
         private StringBuilder sb = new StringBuilder();
 
@@ -44,7 +43,7 @@ namespace BluNoro.Core.ServerFolder
                 sb.Append($"{x.Id}\t{x.Adress}\t\t{x.ServerStatus.TimeOnServerFormatted()}\t{x.ServerStatus.TimeOfConnection.ToUniversalTime()}\n");
             });
             AddTitle("Anonymous users");
-            sb.Append("Adress\t\t\tTimeSpendOn\tTimeOfJoin\n");
+            sb.Append("ServerAdress\t\t\tTimeSpendOn\tTimeOfJoin\n");
             Server.AnonymousUsers.ForEach(x =>
             {
                 sb.Append($"{x.Adress}\t\t{x.TimeOnServerFormatted()}\t{x.TimeOfConnection.ToUniversalTime()}\n");

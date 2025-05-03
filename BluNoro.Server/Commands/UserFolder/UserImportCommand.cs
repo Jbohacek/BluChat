@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.UserFolder
 {

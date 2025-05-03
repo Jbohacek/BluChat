@@ -18,7 +18,13 @@
             Port = int.Parse(split[1]);
         }
 
-        public override string? ToString()
+        public IpPort()
+        {
+            Ip = "127.0.0.1";
+            Port = 0;
+        }
+
+        public override string ToString()
         {
             return Ip + ":" + Port;
         }

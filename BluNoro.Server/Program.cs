@@ -4,7 +4,7 @@ using BluNoro.Core.Common.DataObjects;
 using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Data.EF.Context;
 using BluNoro.Core.Infrastructure.Logger;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 using BluNoro.Core.ServerFolder;
 using Microsoft.EntityFrameworkCore;
 
@@ -71,7 +71,7 @@ namespace BluNoro.ServerConsole
                 //    case "send":
                 //        if (inputs.Length <= 2) continue;
                 //        IpPort adress = new IpPort(inputs[1]);
-                //        User user = server.ConnectedUsers.Find(x => adress.ToString() == x.Adress.ToString());
+                //        User user = server.ConnectedUsers.Find(x => adress.ToString() == x.ServerAdress.ToString());
                 //        StringBuilder message = new StringBuilder();
                 //        for (int i = 2; i < inputs.Length; i++)
                 //        {

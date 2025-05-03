@@ -20,7 +20,19 @@ namespace BluNoro.Core.Common.Services
         public T? GetFirstOrDefault(Expression<Func<T, bool>> filterExpression) =>
             _dbSet.FirstOrDefault(filterExpression);
 
-        public IEnumerable<T> GetWhere(Expression<Func<T, bool>> filterExpression) => _dbSet.Where(filterExpression).ToList();
+        public IQueryable<T> Include(params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return query;
+        }
+
+        public IQueryable<T> GetWhere(Expression<Func<T, bool>> filterExpression) => _dbSet.Where(filterExpression);
 
         public IEnumerable<T> GetAll(params string[] includes)
         {

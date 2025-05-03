@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.ChatFolder
 {
     public class ChatAddCommand(Server server) : Command(server)
     {
         public override string Name => "ChatAdd";
-        public override string Description => "this will add chat to database";
+        public override string Description => "this will add Chat to database";
         public override string Format => "[Chatname]";
         public override void InvokeCommand(string[] inputs)
         {

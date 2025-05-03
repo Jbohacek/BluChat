@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluNoro.Core.Messages.SenderReciever;
-
+using BluNoro.Core.Client.Infrastructure;
+using BluNoro.Core.Common.DataObjects;
+using BluNoro.Core.Common.Serilization;
+using BluNoro.Core.Contracts.Abstracts;
 namespace BluNoro.Core.Messages.Abstracts
 {
-    public abstract class MessageBaseClient
+    public abstract class MessageBaseClient : MessageBase
     {
-        public RecieverUser RecieverUser { get; set; }
-
-        public DateTime SendTime { get; set; } = DateTime.Now;
+        public required UserConnection UserConnection { get; set; }
 
         public abstract void MessangeHandler(MessageClientManager clientManager);
 
-        public string SerlizeMe(MessageSerializer serializer)
-        {
-            return serializer.SerializeMessageToString(this);
-        }
 
     }
 }

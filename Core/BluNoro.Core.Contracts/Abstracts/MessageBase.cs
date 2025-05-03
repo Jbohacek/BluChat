@@ -7,11 +7,13 @@ using BluNoro.Core.Contracts.Interfaces;
 
 namespace BluNoro.Core.Contracts.Abstracts
 {
-    public class MessageBase : ITable
+    public abstract class MessageBase
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
-
+        public DateTime SendTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
+        public DateTime RecievedTime { get; set; }
 
     }
 }
