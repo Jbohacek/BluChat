@@ -27,8 +27,10 @@ public class SqlLiteContext : DbContext
         optionsBuilder.UseSqlite("Data Source=" + AppDomain.CurrentDomain.BaseDirectory + FileName + ".db");
     }
 
-    public DbSet<User> Users { get; set; }
-    public DbSet<Chat> Chats { get; set; }
-    public DbSet<Message> Messages { get; set; }
+    public DbSet<User> Users { get; set; } = null!;
+    public DbSet<Chat> Chats { get; set; } = null!;
+    public DbSet<Message> Messages { get; set; } = null!;
+    public DbSet<Attachment> Attachments { get; set; } = null!;
+    public DbSet<SavedFile> SavedFiles { get; set; } = null!;
 
 }

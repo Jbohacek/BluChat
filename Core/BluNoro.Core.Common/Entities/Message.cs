@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BluNoro.Core.Common.Entities
 {
@@ -14,12 +15,20 @@ namespace BluNoro.Core.Common.Entities
     {
         [Key] public Guid Id { get; set; } = Guid.NewGuid();
         public Chat ParentChat { get; set; } = null!;
-        public string UnformatedMessage { get; set; } = null!;
+        [MaxLength(2000)]public string UnformatedMessage { get; set; } = null!;
         public User Sender { get; set; } = null!;
+
+        public DateTime CreationTime { get; set; } = DateTime.Now;
+        public DateTime ArrivedTime { get; set; }
 
         public override string ToString()
         {
             return Sender.UserName + ": " +  UnformatedMessage;
+        }
+
+        public Message()
+        {
+
         }
     }
 }

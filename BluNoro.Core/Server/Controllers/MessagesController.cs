@@ -23,7 +23,7 @@ namespace BluNoro.Core.Server.Controllers
                 _manager.Database.Chats.Include(x => x.Users).FirstOrDefault(x => x.Id == message.ParentChat.Id);
             if (chatFromDatabase == null)
             {
-                _manager.Logger.Add(new Log("Chat not found", message.ParentChat.Id.ToString(), Enums.Level.ClientError));
+                _manager.Logger.Add(new Log("Chat not found", message.ParentChat.Id.ToString(), LogLevels.Level.ClientError));
                 return;
             }
 
@@ -34,6 +34,7 @@ namespace BluNoro.Core.Server.Controllers
             };
             _manager.Send(returnSuccess);
 
+            message.Message.ArrivedTime = DateTime.Now;
 
             ClientBroadcastMessage responce = new ClientBroadcastMessage(message.ParentChat.Id, message.Message)
             {
