@@ -1,4 +1,4 @@
-﻿namespace BluChat.TestClient
+﻿namespace BluNoro.TestClient
 {
     partial class Main
     {
@@ -99,7 +99,6 @@
             label2.Size = new Size(18, 30);
             label2.TabIndex = 3;
             label2.Text = ":";
-            label2.Click += label2_Click;
             // 
             // btn_start
             // 

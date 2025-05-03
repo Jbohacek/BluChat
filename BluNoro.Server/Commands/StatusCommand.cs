@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluNoro.Core.Networking;
-using BluNoro.Core.ServerFolder;
+using BluNoro.Core.Server;
+using BluNoro.Core.Server.Infrastructure;
 
 namespace BluNoro.ServerConsole.Commands
 {

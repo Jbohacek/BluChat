@@ -22,6 +22,9 @@ namespace BluNoro.TestClient
             NumberOfWindows count = new NumberOfWindows();
             count.ShowDialog();
 
+            if(count.DialogResult != DialogResult.OK)
+                Environment.Exit(0);
+
             int numberOfWindows = count.NumberOfWindowsResult;
 
             for (int i = 0; i < numberOfWindows; i++)

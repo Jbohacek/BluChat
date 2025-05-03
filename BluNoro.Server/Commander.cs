@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using BluNoro.Core.Networking;
-using BluNoro.Core.ServerFolder;
+using BluNoro.Core.Server;
+using BluNoro.Core.Server.Infrastructure;
 using BluNoro.ServerConsole.Commands;
 
 namespace BluNoro.ServerConsole

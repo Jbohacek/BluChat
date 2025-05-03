@@ -1,5 +1,5 @@
 ﻿using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Common.Interfaces;
+using BluNoro.Core.Common.Services;
 using BluNoro.Core.Data.EF.Context;
 
 namespace BluNoro.Core.Data.EF.Repositories

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.ChatFolder
 {
     public class ChatCommand(Server server) : Command(server)
     {
         public override string Name => "Chat";
-        public override string Description => "This will display chat information";
+        public override string Description => "This will display Chat information";
         public override string Format => "[chatname]";
         public override void InvokeCommand(string[] inputs)
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Infrastructure;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.UserFolder
 {
@@ -54,6 +54,7 @@ namespace BluNoro.ServerConsole.Commands.UserFolder
             user.HashPassword = value;
             user = user.HashUserPassword();
             server.Database.Users.Update(user);
+            server.Database.Save();
             Commander.SendSuccessMessage("Password updated");
         }
 

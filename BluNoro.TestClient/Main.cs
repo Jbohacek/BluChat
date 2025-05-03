@@ -1,15 +1,15 @@
 using System.ComponentModel;
-using SuperSimpleTcp;
-using System.Text;
 using System.Diagnostics;
-using System;
-using System.Windows.Forms;
+using System.Text;
+using BluChat.TestClient;
+using BluNoro.Core.Client;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
-using BluNoro.Core.ClientFolder.EvenHandlers;
+using BluNoro.Core.Common.MessageTypes.Authenticate;
+using BluNoro.Core.Common.MessageTypes.GetChatMessages;
+using BluNoro.Core.Common.MessageTypes.GetChats;
+using BluNoro.Core.Common.MessageTypes.SendMessage;
 
-
-namespace BluChat.TestClient
+namespace BluNoro.TestClient
 {
     public partial class Main : Form
     {
@@ -48,12 +48,16 @@ namespace BluChat.TestClient
 
         private void SetEvents()
         {
-            client.TcpEvents.DataReceived += DataReceived;
-            client.Events.UserVerified += UserVerified;
-            client.Events.UserFailedVerification += UserFailedVerification;
-            client.Events.GetChatMessages += messagesChanged;
-            client.Events.MessageRecieved += MessageRecieved!;
-            client.Events.ChatsRecieved += ReloadChats!;
+            client.Events.SyncContext = SynchronizationContext.Current;
+
+            client.TcpEvents.DataReceived += DataReceived!;
+
+            client.Events.Register<ClientSuccessVerification>(SuccAuth);
+            client.Events.Register<ClientFailedVerification>(FailedAuth);
+            client.Events.Register<ClientReturnChats>(ReloadChats);
+            client.Events.Register<ClientBroadcastMessage>(Messagerecieved);
+            client.Events.Register<ClientMultipleStringMessages>(LoadChatMessages);
+
         }
 
 
@@ -66,6 +70,7 @@ namespace BluChat.TestClient
             btn_dissconnect.Enabled = false;
         }
 
+        //zapsani dat do listu
         private void DataReceived(object sender, SuperSimpleTcp.DataReceivedEventArgs e)
         {
             string message = $"[{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}";
@@ -80,71 +85,45 @@ namespace BluChat.TestClient
             }
         }
 
-        private void UserVerified(object sender, UserVerifiedEventHandler e)
-        {
-            var action = new Action(() =>
+        #region Authentication
+            private void SuccAuth(ClientSuccessVerification msg)
             {
                 txt_output.Text =
-                    $"{e.user.Id}\n{e.user.UserName}\n{e.user.ProfilePicPath}\nChat Count: {e.user.Chats.Count}";
+                    $@"{msg.AuthenticatedUser.Id}
+{msg.AuthenticatedUser.UserName}
+{msg.AuthenticatedUser.ProfilePicPath}
+Chat Count: {msg.AuthenticatedUser.Chats.Count}";
                 gr_chats_messages.Visible = true;
 
-                box_chats.Items.Clear();
-                box_messages.Items.Clear();
-                foreach (var chat in e.user.Chats)
+                client.Manager.ChatsClientController.ReloadChats();
+                btn_reload.Enabled = false;
+            }
+
+            private void FailedAuth(ClientFailedVerification msg)
+            {
+                txt_output.Text = msg.Reason;
+            }
+        #endregion
+
+        #region Log
+            private void AddLog(string message)
+            {
+                _logs.Add(new Log(message));
+            }
+
+            public class Log
+            {
+                public string context { get; set; }
+                public DateTime time { get; set; }
+
+                public Log(string message)
                 {
-                    box_chats.Items.Add(chat);
+                    context = message;
+                    time = DateTime.Now;
                 }
-            });
-            InvokeRequiredTask(action);
-        }
-
-        private void UserFailedVerification(object sender, UserFailedVerificationHandler e)
-        {
-            var action = new Action(() =>
-            {
-                txt_output.Text = e.Reason;
-            });
-            InvokeRequiredTask(action);
-        }
-
-
-
-        private void InvokeRequiredTask(Action action)
-        {
-            if (InvokeRequired)
-            {
-                Invoke(action);
             }
-            else
-            {
-                action.Invoke();
-            }
-        }
 
-
-        private void AddLog(string message)
-        {
-            _logs.Add(new Log(message));
-        }
-
-        public class Log
-        {
-            public string context { get; set; }
-            public DateTime time { get; set; }
- 
-            public Log(string message)
-            {
-                context = message;
-                time = DateTime.Now;
-            }
-        }
-
-
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
 
         private void btn_authenticate_Click(object sender, EventArgs e)
         {
@@ -153,7 +132,7 @@ namespace BluChat.TestClient
                 MessageBox.Show("Nepøipojeno k server!");
                 return;
             }
-            client.Manager.SendAuthentication(txt_Username.Text, txt_Password.Text);
+            client.Manager.AuthClientController.SendAuthetication(txt_Username.Text, txt_Password.Text);
         }
 
         private Chat? _selectedChat = null;
@@ -169,26 +148,22 @@ namespace BluChat.TestClient
 
             _selectedChat = selectedChat;
 
-            client.Manager.GetChatMessages(selectedChat);
+            client.Manager.ChatsClientController.GetChatMessages(selectedChat);
 
             Debug.WriteLine(sender);
         }
 
-        private void messagesChanged(object? sender, GetChatMessagesEventHandler e)
+        private void LoadChatMessages(ClientMultipleStringMessages msg)
         {
-            Action action = new Action(() =>
-            {
-                if (_selectedChat == null)
-                    return;
+            if (_selectedChat == null)
+                return;
 
-                box_messages.Items.Clear();
-                foreach (var message in _selectedChat.Messages)
-                {
-                    box_messages.Items.Add(message);
-                }
-                btn_send.Enabled = true;
-            });
-            InvokeRequiredTask(action);
+            box_messages.Items.Clear();
+            foreach (var message in _selectedChat.Messages)
+            {
+                box_messages.Items.Add(message);
+            }
+            btn_send.Enabled = true;
         }
 
         private void btn_send_Click(object sender, EventArgs e)
@@ -199,22 +174,24 @@ namespace BluChat.TestClient
                 return;
             }
 
-            client.Manager.SendMessage(txt_userInputMessage.Text, _selectedChat);
+            client.Manager.MessageClientController.SendMessage(txt_userInputMessage.Text, _selectedChat);
         }
 
-        private void MessageRecieved(object sender, MessageRecievedArgs e)
+        private void Messagerecieved(ClientBroadcastMessage msg)
         {
-            Action action = new Action(() =>
+            if (_selectedChat == null)
             {
-                if (_selectedChat == null)
-                {
-                    return;
-                }
-                _selectedChat.Messages.Add(e.Message);
-                box_messages.Items.Add(e.Message.ToString());
-            });
-            InvokeRequiredTask(action);
+                return;
+            }
+
+            if (_selectedChat.Id != msg.ParentIdChat)
+            {
+                return;
+            }
+            _selectedChat.Messages.Add(msg.Message);
+            box_messages.Items.Add(msg.Message.ToString());
         }
+
 
         private void dgw_log_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -229,26 +206,24 @@ namespace BluChat.TestClient
 
         private void btn_reload_Click(object sender, EventArgs e)
         {
-            client.Manager.ReloadChats();
+            client.Manager.ChatsClientController.ReloadChats();
             btn_reload.Enabled = false;
         }
 
-        private void ReloadChats(object sender, ChatRecivedArgs e)
+        private void ReloadChats(ClientReturnChats msg)
         {
-            Action action = new Action(() =>
+            box_chats.Items.Clear();
+            box_messages.Items.Clear();
+            foreach (var chat in msg.Chats)
             {
-                box_chats.Items.Clear();
-                box_messages.Items.Clear();
-                foreach (var chat in e.Chats)
-                {
-                    box_chats.Items.Add(chat);
-                }
+                box_chats.Items.Add(chat);
+            }
 
-                btn_reload.Enabled = true;
+            btn_reload.Enabled = true;
 
-                _selectedChat = null;
-            });
-            InvokeRequiredTask(action);
+            _selectedChat = null;
         }
+
+
     }
 }

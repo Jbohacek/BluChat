@@ -16,6 +16,7 @@ namespace BluChat.TestClient
         {
             InitializeComponent();
             NumberOfWindowsResult = 1;
+            DialogResult = DialogResult.Abort;
         }
 
         public int NumberOfWindowsResult;
@@ -23,6 +24,7 @@ namespace BluChat.TestClient
         private void btn_start_Click(object sender, EventArgs e)
         {
             NumberOfWindowsResult = (int)nmb_number.Value;
+            DialogResult = DialogResult.OK;
             this.Close();
         }
     }

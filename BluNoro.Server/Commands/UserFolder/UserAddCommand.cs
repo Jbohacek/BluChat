@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Infrastructure;
+using BluNoro.Core.Server;
 
 namespace BluNoro.ServerConsole.Commands.UserFolder
 {
@@ -38,6 +39,8 @@ namespace BluNoro.ServerConsole.Commands.UserFolder
                 Commander.SendErrorMessage($"User already with {user.UserName} exists");
                 return;
             }
+
+            user = user.HashUserPassword();
 
             server.Database.Users.Add(user);
             server.Database.Save();

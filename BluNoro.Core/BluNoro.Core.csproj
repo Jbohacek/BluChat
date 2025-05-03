@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Messages\MessageTypes\AddChat\" />
-    <Folder Include="Messages\MessageTypes\AddUser\" />
+    <Folder Include="Common\MessageTypes\AddChat\" />
+    <Folder Include="Common\MessageTypes\AddUser\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Networking;
+using BluNoro.Core.Server;
 using BluNoro.ServerConsole;
 
 namespace BluNoro.ServerConsole.Commands.UserFolder
