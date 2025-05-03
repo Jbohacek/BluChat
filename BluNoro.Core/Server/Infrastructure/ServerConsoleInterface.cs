@@ -6,9 +6,9 @@ using System.Text;
 
 namespace BluNoro.Core.Server.Infrastructure
 {
-    public class ServerConsoleInterface(Server.Server server)
+    public class ServerConsoleInterface(Server server)
     {
-        private Server.Server Server { get; set; } = server;
+        private Server Server { get; set; } = server;
 
         private StringBuilder sb = new StringBuilder();
 

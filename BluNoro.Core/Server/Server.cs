@@ -13,7 +13,6 @@ using BluNoro.Core.Data.EF.Context;
 using BluNoro.Core.Infrastructure;
 using BluNoro.Core.Infrastructure.Logger.Interfaces;
 using BluNoro.Core.Infrastructure.Logger;
-using BluNoro.Core.Messages.Abstracts;
 using BluNoro.Core.Server.Infrastructure;
 
 
@@ -89,6 +88,9 @@ namespace BluNoro.Core.Server
             if (user != null)
             {
                 ConnectedUsers.Remove(user);
+                user.LastLogIn = DateTime.Now;
+                Database.Users.Update(user);
+                Database.Save();
                 Logger.Add(LogFactory.UserDisconnected(user));
                 return;
             }

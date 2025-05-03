@@ -22,7 +22,7 @@ namespace BluNoro.Core.Common.Entities
         [DefaultValue("{}"),MaxLength(Int32.MaxValue)]public string UserOptions { get; set; } = "{}";
 
         public DateTime LastLogIn { get; set; } = DateTime.Now;
-        public DateTime CreationTime { get; private set; } = DateTime.Now;
+        public DateTime CreationTime { get; set; } = DateTime.Now;
 
         [XmlIgnore]public List<Chat> Chats { get; set; } = new List<Chat>();
         [XmlIgnore]public List<Message> Messages { get; set; } = new List<Message>();
@@ -39,7 +39,6 @@ namespace BluNoro.Core.Common.Entities
 
         public User()
         {
-            
         }
 
         public User(string ipPort, DateTime timeOfConnection) : this(new IpPort(ipPort), timeOfConnection)

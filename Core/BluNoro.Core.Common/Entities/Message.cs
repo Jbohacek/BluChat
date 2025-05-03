@@ -18,12 +18,17 @@ namespace BluNoro.Core.Common.Entities
         [MaxLength(2000)]public string UnformatedMessage { get; set; } = null!;
         public User Sender { get; set; } = null!;
 
-        public DateTime CreationTime { get; private set; } = DateTime.Now;
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         public DateTime ArrivedTime { get; set; }
 
         public override string ToString()
         {
             return Sender.UserName + ": " +  UnformatedMessage;
+        }
+
+        public Message()
+        {
+
         }
     }
 }

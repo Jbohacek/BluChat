@@ -34,6 +34,7 @@ namespace BluNoro.Core.Server.Controllers
             };
             _manager.Send(returnSuccess);
 
+            message.Message.ArrivedTime = DateTime.Now;
 
             ClientBroadcastMessage responce = new ClientBroadcastMessage(message.ParentChat.Id, message.Message)
             {

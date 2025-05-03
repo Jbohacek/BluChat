@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Common.Abstracts;
+using BluNoro.Core.Common.Attributes;
 using BluNoro.Core.Common.DataObjects;
 using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Infrastructure;
