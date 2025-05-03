@@ -19,7 +19,6 @@
   <ItemGroup>
     <Folder Include="Common\MessageTypes\AddChat\" />
     <Folder Include="Common\MessageTypes\AddUser\" />
-    <Folder Include="Messages\Controllers\" />
   </ItemGroup>
 
   <ItemGroup>

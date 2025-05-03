@@ -31,10 +31,11 @@ namespace BluNoro.Core.Client.Controllers
             };
             _manager.Send(request);
 
-            _manager.Client.Events.ChatsRecieved += (sender, args) =>
+            _manager.Client.Events.Register<ClientReturnChats>((msg) =>
             {
-                _manager.Client.UserConnection.User.Chats = args.Chats;
-            };
+                _manager.Client.UserConnection.User.Chats = msg.Chats;
+            });
+
         }
 
     }

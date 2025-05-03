@@ -10,7 +10,7 @@ using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Contracts.Abstracts;
 using BluNoro.Core.Server.Infrastructure;
 
-namespace BluNoro.Core.Messages.Abstracts
+namespace BluNoro.Core.Common.Abstracts
 {
 
     public abstract class MessageBaseServer : MessageBase
@@ -29,7 +29,7 @@ namespace BluNoro.Core.Messages.Abstracts
 
         public virtual void SaveMe()
         {
-            Server.Database.Messages.Add(this.Convert());
+            Server.Database.Messages.Add(Convert());
             Server.Database.Save();
         }
 

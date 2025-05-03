@@ -7,9 +7,9 @@ using BluNoro.Core.Common.Entities;
 using SuperSimpleTcp;
 using BluNoro.Core.Infrastructure;
 using BluNoro.Core.Infrastructure.Logger.Interfaces;
-using BluNoro.Core.Messages.Abstracts;
 using BluNoro.Core.Common.Serilization;
 using BluNoro.Core.Server.Controllers;
+using BluNoro.Core.Common.Abstracts;
 
 namespace BluNoro.Core.Server.Infrastructure
 {
@@ -49,11 +49,13 @@ namespace BluNoro.Core.Server.Infrastructure
             return true;
         }
 
-        public void Send(MessageBaseClient message)
+        public void Send(MessageBaseClient message, string overPort = "")
         {
             message.SendTime = DateTime.Now;
-            string ipPort = message.UserConnection.IpPort;
+            string ipPort = string.IsNullOrEmpty(overPort) ? message.UserConnection.IpPort : overPort;
             string serilzed = message.SerilizeMe();
+
+            
             _tcpServer.Send(ipPort,serilzed);
         }
 
@@ -69,7 +71,7 @@ namespace BluNoro.Core.Server.Infrastructure
             {
                 if (user.ServerStatus.IsConnected)
                 {
-                    Send(message);
+                    Send(message,user.ServerStatus.Adress.ToString());
                 }
             }
 

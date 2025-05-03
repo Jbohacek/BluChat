@@ -1,9 +1,9 @@
 ﻿using System;
+using BluNoro.Core.Common.Abstracts;
 using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Common.MessageTypes.SendMessage.Confirmation;
 using BluNoro.Core.Contracts.Enums;
 using BluNoro.Core.Infrastructure.Logger;
-using BluNoro.Core.Messages.Abstracts;
 using BluNoro.Core.Server.Infrastructure;
 
 namespace BluNoro.Core.Common.MessageTypes.SendMessage

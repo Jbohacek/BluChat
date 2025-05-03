@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Client.Controllers;
+using BluNoro.Core.Common.Abstracts;
+using BluNoro.Core.Common.Attributes;
 using BluNoro.Core.Common.DataObjects;
 using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Common.MessageTypes.Authenticate;
@@ -13,7 +15,6 @@ using BluNoro.Core.Common.MessageTypes.GetChatMessages;
 using BluNoro.Core.Common.MessageTypes.GetChats;
 using BluNoro.Core.Common.MessageTypes.SendMessage;
 using BluNoro.Core.Common.Serilization;
-using BluNoro.Core.Messages.Abstracts;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using SuperSimpleTcp;
 

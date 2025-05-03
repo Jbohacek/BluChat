@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluNoro.Core.Client.Events;
 using BluNoro.Core.Client.Infrastructure;
-using BluNoro.Core.ClientFolder;
 using BluNoro.Core.Common.DataObjects;
 using BluNoro.Core.Common.Entities;
 using SuperSimpleTcp;
@@ -26,6 +26,7 @@ namespace BluNoro.Core.Client
         public bool IsConnected => _client.IsConnected;
         public IpPort ServerAdress { get; set; }
         public MessageClientManager Manager { get; set; }
+
         public ClientEvents Events { get; set; }
 
         public Client(string ipAdress, int port)
@@ -33,7 +34,7 @@ namespace BluNoro.Core.Client
             ServerAdress = new IpPort(ipAdress, port);
             _client = new SimpleTcpClient($"{ipAdress}:{port}");
             Manager = new MessageClientManager(_client, this);
-            Events = new ClientEvents(this);
+            Events = new ClientEvents();
 
             UserConnection = new UserConnection();
 

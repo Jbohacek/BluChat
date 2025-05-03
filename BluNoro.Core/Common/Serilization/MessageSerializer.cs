@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using System.Reflection;
 using BluNoro.Core.Common.DataObjects;
-using BluNoro.Core.Messages.Abstracts;
+using BluNoro.Core.Common.Abstracts;
 
 namespace BluNoro.Core.Common.Serilization
 {

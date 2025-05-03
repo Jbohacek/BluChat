@@ -4,7 +4,7 @@
 
 using System.Text;
 
-namespace BluNoro.Core.ServerFolder
+namespace BluNoro.Core.Server.Infrastructure
 {
     public class ServerConsoleInterface(Server.Server server)
     {

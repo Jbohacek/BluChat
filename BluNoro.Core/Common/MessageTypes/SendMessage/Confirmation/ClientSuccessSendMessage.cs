@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Client.Infrastructure;
+using BluNoro.Core.Common.Abstracts;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Messages.Abstracts;
 
 namespace BluNoro.Core.Common.MessageTypes.SendMessage.Confirmation
 {

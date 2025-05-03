@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BluNoro.Core.Common.Abstracts;
 using BluNoro.Core.Common.DataObjects;
 using BluNoro.Core.Common.Entities;
-using BluNoro.Core.Messages.Abstracts;
 using BluNoro.Core.Server.Infrastructure;
 
 namespace BluNoro.Core.Common.MessageTypes.GetChats

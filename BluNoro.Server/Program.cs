@@ -5,7 +5,7 @@ using BluNoro.Core.Common.Entities;
 using BluNoro.Core.Data.EF.Context;
 using BluNoro.Core.Infrastructure.Logger;
 using BluNoro.Core.Server;
-using BluNoro.Core.ServerFolder;
+using BluNoro.Core.Server.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace BluNoro.ServerConsole

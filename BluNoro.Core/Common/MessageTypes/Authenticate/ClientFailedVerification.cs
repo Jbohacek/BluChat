@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BluNoro.Core.Client.Infrastructure;
-using BluNoro.Core.Messages.Abstracts;
-
+using BluNoro.Core.Common.Abstracts;
 
 namespace BluNoro.Core.Common.MessageTypes.Authenticate
 {
@@ -15,7 +14,7 @@ namespace BluNoro.Core.Common.MessageTypes.Authenticate
         
         public override void MessangeHandler(MessageClientManager clientManager)
         {
-            clientManager.Client.Events.OnUserFailedVerification(this);
+            base.MessangeHandler(clientManager);
         }
 
     }
